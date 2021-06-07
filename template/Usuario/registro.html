@@ -2,6 +2,8 @@
 
 {% block contenido %}
 
+<div class="registro_container">
+
 <form method="post">
 	{% csrf_token %}
 	
@@ -18,5 +20,22 @@
 	</div>
 
 </form>
+
+</div>
+
+<style>
+	
+.registro_container{
+
+	padding-top: 3.5em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 3.5em;
+
+	overflow: auto;
+	height: 100%;
+}
+
+</style>
 
 {% endblock %}

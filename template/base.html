@@ -17,14 +17,14 @@
 <body>
 
 
-	<div style="width: 90%; margin: auto;">
+	<div class="app_layaout" style="width: 90%; margin: auto;">
 		{% include 'body/header.html' %}
 
 		{% block nav %}
 		{% endblock %}
 	
 		{% block contenido %}
-		
+
 		{% endblock %}
 
 	</div>
@@ -53,6 +53,16 @@ body{
   padding: 0;
   font-size: 1em;
   font-family: "Neutrif pro"
+}
+
+.app_layaout{
+
+	background-color: #f2f0e4;
+	height: 100vh;
+	position: relative;
+	width: 100%;
+	max-width: 600px;
+	margin: auto;
 }
 
 button{
