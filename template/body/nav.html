@@ -1,0 +1,79 @@
+
+<div class="ContenedorNav">
+	
+	<h1 class="H1Nav">
+		CarneShop
+	</h1>
+
+	<div class="InfoBienvenido">
+		
+		<h2 class="h1Info">
+			Tus pedidos de Carne a tu puerta
+		</h2>
+
+	</div>
+
+	<div class="actionBtn">
+		<a href="" class='btn btn-primary d-flex align-items-center mb-3'>
+			Obtener una Cuenta
+		</a>
+
+		<a href="">
+			¿Tienes una cuenta? Ingresar
+		</a>
+	</div>
+
+</div>
+
+<style>
+	
+	.ContenedorNav{
+		padding: 3em 1.5em;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start; /**/
+		background-color: #f2f0e4;
+	}
+
+	.H1Nav{
+
+		font-weight: 500;
+		font-style: normal;
+		margin: 50px 0;
+		color: var(--textColor);
+		text-align: center;
+	}
+	
+	.InfoBienvenido{
+		overflow: auto;
+	}
+
+	.h1Info{
+		color: #333;
+		margin-bottom: 20px;
+		text-transform: uppercase;
+		text-align: center;
+		font-weight: 700;
+		font-size: 49px;
+	}
+
+	.actionBtn{
+		align-self: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	a{
+		vertical-align: middle;
+	}
+	.actionBtn > a:last-child{
+		color:  var(--btnBgColor);
+		font-size: 0.875em;
+		font-weight: 400;
+		font-style: normal;
+		vertical-align: middle;
+		margin-bottom: 1rem!important;
+		margin-left: 5px;
+	}
+
+</style>
