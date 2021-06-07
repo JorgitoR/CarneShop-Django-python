@@ -20,9 +20,11 @@
 	<div style="width: 90%; margin: auto;">
 		{% include 'body/header.html' %}
 
-		{% include 'body/nav.html' %}
+		{% block nav %}
+		{% endblock %}
 	
 		{% block contenido %}
+		
 		{% endblock %}
 
 	</div>

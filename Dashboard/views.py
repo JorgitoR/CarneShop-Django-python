@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django.view.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .forms import RegistroForm
 from .models import Usuario
@@ -17,7 +17,7 @@ class RegistroView(CreateView):
 		context['titulo'] = 'Registrate'
 		return context
 
-	def form(self, form):
+	def form_valid(self, form):
 		usuario = form.save()
 		login(self.request, usuario)
 		return redirect('')

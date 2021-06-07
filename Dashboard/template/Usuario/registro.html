@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<form method="post">
+	{% csrf_token %}
+	
+	{{form.as_p}}
+
+	<button type="submit" class="btn btn-primary d-flex align-items-center mb-3">
+		Registrarce
+	</button>
+
+</form>
+
+{% endblock %}

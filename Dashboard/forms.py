@@ -5,8 +5,9 @@ from .models import Usuario
 
 class RegistroForm(UserCreationForm):
 
-	class Meta(UserCreationForm):
+	class Meta(UserCreationForm.Meta):
 		model = Usuario
+		
 
 	def save(self, commit=True):
 
