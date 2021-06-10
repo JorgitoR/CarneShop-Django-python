@@ -23,6 +23,54 @@
 		</div>
 	</div>
 
+	<div class="HomeContenedor">
+	<div class="dailyCard">
+		<div>
+			<span>7:00 PM</span>
+			<div>
+				<span>MIND BODY GAME</span>
+				<p>Talk less do more</p>
+			</div>
+		</div>
+		<div>
+			<span>7:00 PM</span>
+			<div>
+				<span>MIND BODY GAME</span>
+				<p>Talk less do more</p>
+			</div>
+		</div>
+		<div>
+			<span>7:00 PM</span>
+			<div>
+				<span>MIND BODY GAME</span>
+				<p>Talk less do more</p>
+			</div>
+		</div>
+	</div>
+
+	<h6 class="h6_home">ENCUENTRA LA CARNE QUE BUSCAS ...</h6>
+	<div class="row mx-0">
+		{% for item in product %}
+		<div class="col-6 px-2 mb-3">
+			<div class="DivProductos">
+				<img src="{{item.img.url}}">
+				<h6>{{item.titulo}}</h6>
+				<p>{{item.texto|truncatechars:60}}</p>
+			
+			<div class="action_btn">
+				<a href="">
+					COP {{item.precio}}	
+				</a>
+				<a href="">
+					Comprar
+				</a>
+			</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	</div>
 
 <style>
 	.header{
@@ -40,6 +88,112 @@
 	.header img{
 		width: 25px;
 	}
+
+	.HomeContenedor{
+
+		padding-top: 3.5em;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-bottom: 3.5em;
+		overflow: auto;
+		height: 100%;
+	}
+
+	.dailyCard{
+
+	background-color: #e7e4d5;
+	padding:0.5em 1em;
+	border-radius: 1em; 
+
+}
+
+.dailyCard > div{
+	display: flex;
+}
+
+
+.dailyCard > div > span{
+	width: 20%;
+	text-align: end;
+}
+
+.dailyCard > div > div {
+	margin-left: 0.5em;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+}
+
+.dailyCard span{
+	font-size: 0.675em;
+	color: var(--textColor);
+	font-weight: 500;
+}
+
+.dailyCard p{
+	font-size: 0.875em;
+	font-weight: 500;
+	line-height: 1;
+	margin: 0;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden!important;
+	text-overflow: ellipsis;
+	width: 159px;
+}
+
+.h6_home{
+
+
+	padding: 0.5em;
+
+}
+
+.DivProductos{
+	background-color: #fff;
+	border-radius: 0.5em;
+	padding: 0.5em;
+	box-shadow: 0px 2px 3px #ccc;
+}
+
+.DivProductos img{
+	width: 100%;
+	height: 200px;
+}
+
+.DivProductos h6{
+
+	color: var(--textColor);
+	font-size: 1em;
+	margin: 0;
+	display: flex;
+	align-items: center;
+}	
+
+.DivProductos p{
+	margin: 0;
+	line-height: 1.2;
+	font-size: 0.90em;
+}
+
+.action_btn{
+	position: relative;
+	display: flex;
+}
+
+.action_btn a{
+	display: inline-block;
+	width: 50%;
+	padding: 0.5em;
+	color:var(--btnBgColor);
+}
+
+
+.action_btn> a:last-child{
+	text-align: right;
+}	
+
+
 </style>
 
 {% endblock %}

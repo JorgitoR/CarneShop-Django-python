@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .forms import RegistroForm
-from .models import Usuario
+from .models import Usuario, producto
 
 from django.contrib.auth import authenticate, login
 
@@ -25,5 +25,10 @@ class RegistroView(CreateView):
 
 def home(request):
 
+	product = producto.objects.all()
 
-	return render(request, 'dashboard/home.html')
+	context ={
+		'product':product
+	}
+
+	return render(request, 'dashboard/home.html', context)
