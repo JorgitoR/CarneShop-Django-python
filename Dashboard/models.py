@@ -38,6 +38,17 @@ class OrdenarProducto(models.Model):
 		return self.usuario.username
 
 
+
+class OrdenarPedido(models.Model):
+
+	usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='ordenar')
+	producto = models.ManyToManyField(OrdenarProducto)
+	date = models.DateTimeField(auto_now_add=True)
+	ordenado = models.BooleanField(default=False)
+
+	cupon = models.ForeignKey('Cupon', on_delete=models.SET_NULL, blank=True, null=True)
+	
+
 class producto(models.Model):
 	usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="producto")
 	categoria = models.ForeignKey(categoria, on_delete=models.CASCADE, related_name="producto")
