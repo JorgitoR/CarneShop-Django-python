@@ -21,3 +21,9 @@ class RegistroView(CreateView):
 		usuario = form.save()
 		login(self.request, usuario)
 		return redirect('')
+
+
+def home(request):
+
+
+	return render(request, 'dashboard/home.html')
