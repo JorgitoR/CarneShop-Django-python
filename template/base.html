@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Rubik" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 
 </head>
 <body>
@@ -29,56 +31,6 @@
 
 	</div>
 
-<style>
-
-:root{
-
-  --textColor:rgb(65, 65, 66);
-  --btnBgColor:#3287b7;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
-p, h1, h2, h3, a{
-	font-family: 'Roboto', sans-serif;
-}
-
-
-html{
-  scroll-behavior: smooth;
-}
-
-body{
-  margin:0;
-  padding: 0;
-  font-size: 1em;
-  font-family: "Neutrif pro"
-}
-
-.app_layaout{
-
-	background-color: #f2f0e4;
-	height: 100vh;
-	position: relative;
-	width: 100%;
-	max-width: 600px;
-	margin: auto;
-}
-
-button{
-	outline: none;
-}
-
-a{
-	text-decoration:none!important;
-}
-
-
-a:hover{
-	text-decoration:none!important;
-}
-
-</style>
 
 </body>
 </html>

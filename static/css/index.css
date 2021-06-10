@@ -1,0 +1,59 @@
+
+:root{
+
+  --textColor:rgb(65, 65, 66);
+  --btnBgColor:#3287b7;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+p, h1, h2, h3, a{
+	font-family: 'Roboto', sans-serif;
+}
+
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  margin:0;
+  padding: 0;
+  font-size: 1em;
+  font-family: "Neutrif pro"
+}
+
+.app_layaout{
+
+	background-color: #f2f0e4;
+	height: 100vh;
+	position: relative;
+	width: 100%;
+	max-width: 600px;
+	margin: auto;
+}
+
+.primaryBtn{
+	background-color:var(--btnBgColor);
+	color: #ffff;
+	border-radius: 2em;
+	padding: 0.5em 1.5em;
+	font-size: 1.2em;
+	font-weight: 500;
+	font-style: normal;
+	text-align: center;
+}
+
+
+button{
+	outline: none;
+}
+
+a{
+	text-decoration:none!important;
+}
+
+
+a:hover{
+	text-decoration:none!important;
+}

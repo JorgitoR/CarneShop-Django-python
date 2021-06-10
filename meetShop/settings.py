@@ -41,7 +41,12 @@ INSTALLED_APPS = [
 
     #app locales
     'Home',
-    'Dashboard'
+    'Dashboard',
+
+    #app third
+    'rest_framework',
+    'rest_framework.authtoken', 
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -123,10 +128,27 @@ AUTH_USER_MODEL = "Dashboard.Usuario"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    #No sera nuestro servidor, sera nuestro almacenamiento a largo plazo
+    os.path.join(BASE_DIR, "static"),
+ 
+]
+#sera nuestro servidor
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static-serve")
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+APP_NAME = os.getenv('APP_NAME', 'CarneShop')
+APP_EMAIL = os.getenv('APP_EMAIL', 'no-reply@localhost')
+SITIO_HEADER = os.getenv('SITIO_HEADER', 'CarneShop')
+
+from .settings_emails import *

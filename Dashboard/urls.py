@@ -6,6 +6,6 @@ from .views import (
 
 urlpatterns = [
 	
-	path('registro/', RegistroView.as_view(), name='registro')
+	path('registro2/', RegistroView.as_view(), name='registro')
 
 ]
