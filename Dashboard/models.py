@@ -66,7 +66,7 @@ class pedidos(models.Model):
 	orden = models.ForeignKey(Orden, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.pedidos.content_object.titulo
+		return "{} Pedido {}".format(self.pedidos.content_object.usuario, self.pedidos.content_object.titulo) 
 
 class Cupon(models.Model):
 	codigo = models.CharField(max_length=15)
