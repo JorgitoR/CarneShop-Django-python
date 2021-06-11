@@ -14,6 +14,17 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.views.generic import View
 
+def perfil(request, username=None):
+	
+	perfil = Usuario.objects.get(username=username)
+
+	context = {
+		'perfil':perfil
+	}
+
+	return render(request, 'Usuario/perfil.html', context)
+
+
 class RegistroView(CreateView):
 	model = Usuario
 	form_class = RegistroForm

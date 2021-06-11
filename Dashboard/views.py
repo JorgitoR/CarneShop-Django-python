@@ -20,9 +20,11 @@ from django.views.generic import View
 def home(request):
 
 	product = producto.objects.all()
+	usuario = request.user
 
 	context ={
-		'product':product
+		'product':product,
+		'usuario':usuario
 	}
 
 	return render(request, 'dashboard/home.html', context)

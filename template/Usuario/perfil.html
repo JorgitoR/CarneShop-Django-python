@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="perfil_contenedor">
+	<div class="perfil_header">
+		<div class="text-right mb-0 perfil_head">
+			<a href="{% url 'home' %}">
+				<img src="{% static 'img/arrow.png' %}">
+			</a>
+		</div>
+	</div>
+
+	<img src="{% static 'img/user-img.jpg' %}" class="perfil_img">
+	<h4>{{perfil.get_full_name}}</h4>
+	<p>@{{perfil.username}}</p>
+</div>
+
+<style>
+	.perfil_contenedor{
+		height: 100%;
+		overflow: auto;
+		padding: 0 0.5em;
+		padding-top: 5em;
+	}
+
+
+.perfil_contenedor .perfil_img{
+	width: 80px;
+	border-radius: 2.2em;
+}
+
+.perfil_contenedor h4{
+	font-size: 1.5em;
+	color: var(--textColor);
+	margin: 0.5em 0 0.1em 0;
+}
+
+.perfil_contenedor p{
+	font-size: 1.1em;
+	color: #aaaaaa;
+	margin: 0;
+}
+
+</style>
+
+{% endblock %}
