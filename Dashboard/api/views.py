@@ -17,6 +17,8 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormView
 
+from analitycs.signals import usuario_logged_in
+
 from .serializers import(
 		RegistroSerializer,	
 	)
@@ -55,4 +57,8 @@ class Login(FormView):
 		token, created = Token.objects.get_or_create(user=usuario)
 		if token:
 			login(self.request, form.get_user())
-			return super(Login, self).form_valid(form)
+
+		if self.request.user.is_authenticated:
+			usuario_logged_in.send(self.request.user, request=self.request)
+
+		return super(Login, self).form_valid(form)
