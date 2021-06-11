@@ -16,6 +16,33 @@ class Usuario(AbstractUser):
 	cliente = models.BooleanField(default=False)
 
 
+class direccion(models.Model):
+	class kind_address(models.TextChoices):
+		carr = "CARRERA", "Carr",
+		call = "CALLE", "Calle",
+		aven = "AVENIDA", "Avenida"
+
+	usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='direccion')
+
+	ciudad = models.CharField(max_length=50, default='Aguachica')
+	barrio = models.CharField(max_length=50, blank=True, null=True)
+	kind_address = models.CharField(max_length=20, choices=kind_address.choices)
+	direccion = models.CharField(max_length=20)
+	hastag = models.CharField(max_length=1, default='#')
+	numero1 = models.CharField(max_length=2)
+	numero2 = models.CharField(max_length=2, blank=True, null=True)
+
+
+	def __str__(self):
+		return "{}-{} Direccion {}-{}-{}-{}{}".format(self.ciudad, 
+										self.barrio, 
+										self.kind_address, 
+										self.direccion,
+										self.hastag,
+										self.numero1,
+										self.numero2)
+
+
 
 class categoria(models.Model):
 	nombre = models.CharField(max_length=100)
