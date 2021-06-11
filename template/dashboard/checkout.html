@@ -28,6 +28,10 @@
 				<button>-</button>
 			</div>
 
+			<button class="ShowMore">
+				Descripcion de compra
+			</button>
+
 		</div>
 		{% endif %}
 		{% endfor %}
@@ -103,6 +107,21 @@
 		padding: 0.1em 1.2em;
 		outline: none;
 		cursor: pointer;
+	}
+
+	.ShowMore{
+		display: flex;
+		align-items: center;
+		position: absolute;
+		bottom: -14px;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: #f4f4f4!important;
+		border:none!important;
+		color: #aaa!important;
+		box-shadow: 0px 2px 3px #cccccc;
+		font-weight: 500!important;
+
 	}
 
 </style>
