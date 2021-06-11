@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #app locales
     'Home',
     'Dashboard',
+    'analitycs',
 
     #app third
     'rest_framework',
