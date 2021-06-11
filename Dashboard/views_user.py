@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, RedirectView
 from django.utils import timezone
 from .forms import RegistroForm, DirecionForm
 from .models import (Usuario,
 					direccion)
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -28,6 +28,13 @@ class RegistroView(CreateView):
 		usuario = form.save()
 		login(self.request, usuario)
 		return redirect('')
+
+class LogOutView(RedirectView):
+	pattern_name = 'login'
+
+	def dispatch(self, request, *args, **kwargs):
+		logout(request)
+		return super().dispatch(request, *args, **kwargs)
 
 class DirecionCrear(CreateView):
 	model = direccion 
