@@ -3,25 +3,7 @@
 
 {% block nav %}
 	
-	<div class="header">
-		<a href="">
-			<img src="{% static 'img/search.png' %}">
-		</a>
-		<div class="nav_items">
-			<a href="">
-				<img src="{% static 'img/invite.png' %}">
-			</a>
-			<a href="">
-				<img src="{% static 'img/calendar.png' %}">
-			</a>
-			<a href="">
-				<img src="{% static 'img/noti.png' %}">
-			</a>
-			<a href="">
-				<img src="{% static 'img/b1.png' %}">
-			</a>
-		</div>
-	</div>
+	{% include 'dashboard/header.html' %}
 
 	<div class="HomeContenedor">
 	<div class="dailyCard">
@@ -61,7 +43,7 @@
 				<a href="">
 					COP {{item.precio}}	
 				</a>
-				<a href="">
+				<a href="{% url 'add_carrito' item.slug %}">
 					Comprar
 				</a>
 			</div>
@@ -73,31 +55,7 @@
 	</div>
 
 <style>
-	.header{
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0.5em 1em;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		background-color: #f2f0e4;
-	}
 
-	.header img{
-		width: 25px;
-	}
-
-	.HomeContenedor{
-
-		padding-top: 3.5em;
-		padding-left: 1em;
-		padding-right: 1em;
-		padding-bottom: 3.5em;
-		overflow: auto;
-		height: 100%;
-	}
 
 	.dailyCard{
 
