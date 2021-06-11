@@ -5,4 +5,92 @@
 
 	{% include 'dashboard/header.html' %}
 
+	<div style="margin: 30px 0;">
+	<div class="checkContainer">
+		
+		{% for item in orden.productos.all %}
+
+		{% if item.stock == 0 %}
+		{% else %}	
+		<div>
+			<div class="d-flex align-items-center">
+				<img src="{{item.content_object.img.url}}">
+				<div class="ml-2">
+					<h5>{{item.content_object.titulo}}</h5>
+					<p>{{item.content_object.texto}}</p>
+				</div>
+			</div>
+
+			<button>+</button>
+
+		</div>
+		{% endif %}
+		{% endfor %}
+
+	</div>
+	</div>
+
+<style>
+	
+	h6{
+		font-size: 0.975em;
+		font-weight: 500;
+		color: #bbbbbb;
+		margin: 1.5em 0 0.5em 0;
+	}
+
+	.checkContainer{
+
+		background-color: #fff;
+		margin: 0 -0.5em;
+		padding: 0.5em 0.5em 1.5em 0.5em;
+		position: relative;
+	}
+
+	.checkContainer > div{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.5em;
+	}
+
+	.checkContainer img{
+		width: 40px;
+		border-radius: 1.1em;
+	}
+
+	.checkContainer h5{
+		color: var(--textColor);
+		font-size: 1.1em;
+		margin-bottom: 0.2em;
+	}
+
+	.checkContainer p{
+		color: var(--textColor);
+		font-size: 0.9em;
+		margin: 0;
+		display: block;
+		display: -webkit-box;
+		width: 173px;
+		height: fit-content;
+		line-height: 1.15;
+		-webkit-line-clamp:2;
+		-webkit-box-orient:vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #aaaaaa;
+	}
+
+	.checkContainer button{
+		background:transparent;
+		border:2px solid var(--btnBgColor);
+		border-radius: 2em;
+		color: var(--btnBgColor);
+		font-weight: 400;
+		font-size: 1em;
+		padding: 0.1em 1.2em;
+	}
+
+</style>
+
 {% endblock %}

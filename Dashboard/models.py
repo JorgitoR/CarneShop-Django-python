@@ -58,6 +58,8 @@ class Orden(models.Model):
 	cupon = models.ForeignKey('Cupon', on_delete=models.SET_NULL, blank=True, null=True)
 	estado = models.CharField(max_length=100, choices=Estados.choices)
 
+	def __str__(self):
+		return "{}".format(self.usuario)
 
 class pedidos(models.Model):
 	pedidos = models.ForeignKey(OrdenarProducto, on_delete=models.CASCADE)

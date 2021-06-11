@@ -12,6 +12,7 @@ class productoAdmin(admin.ModelAdmin):
 
 	inlines = [ContentTypeInline]
 
+admin.site.register(pedidos)
 admin.site.register(OrdenarProducto)
 admin.site.register(Orden)
 admin.site.register(producto)
