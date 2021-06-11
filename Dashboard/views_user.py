@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils import timezone
@@ -33,5 +34,3 @@ class DirecionCrear(CreateView):
 	form_class = DirecionForm
 	template_name= 'Usuario/address.html'
 	success_url=reverse_lazy('')
-
-	def post(self, request, *args, **kwargs):

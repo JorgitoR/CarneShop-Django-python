@@ -91,6 +91,7 @@ class CheckView(View):
 	def get(self, *args, **kwargs):
 		try:
 			orden = Orden.objects.get(usuario=self.request.user, ordenado=False)
+			print(self.request.geo_data.ip_address)
 			context = {
 				'orden':orden
 			}

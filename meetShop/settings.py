@@ -57,9 +57,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'geoip2_extras.middleware.GeoIP2Middleware',
 ]
 
+GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIp')
+
+
 ROOT_URLCONF = 'meetShop.urls'
+
 
 TEMPLATES = [
     {
