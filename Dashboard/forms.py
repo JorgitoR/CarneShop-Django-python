@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Usuario
+from .models import Usuario, direccion
 
 class RegistroForm(UserCreationForm):
 
@@ -31,3 +31,22 @@ class RegistroForm(UserCreationForm):
 
 		return usuario
 
+
+
+class DirecionForm(forms.ModelForm):
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['ciudad'].widget.attrs['autofocus'] = True
+
+	class Meta:
+		model = direccion
+		fields = [
+			'ciudad',
+			'barrio',
+			'kind_address',
+			'direccion',
+			'hastag',
+			'numero1',
+			'numero2'
+		]

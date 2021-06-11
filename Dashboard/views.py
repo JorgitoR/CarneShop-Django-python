@@ -16,21 +16,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.views.generic import View
 
-class RegistroView(CreateView):
-	model = Usuario
-	form_class = RegistroForm
-	template_name ='Usuario/registro.html'
-
-	def get_context_data(self, *args, **kwargs):
-		context = super().get_context_data(*args, **kwargs)
-		context['titulo'] = 'Registrate'
-		return context
-
-	def form_valid(self, form):
-		usuario = form.save()
-		login(self.request, usuario)
-		return redirect('')
-
 
 def home(request):
 

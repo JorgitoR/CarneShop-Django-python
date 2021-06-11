@@ -1,11 +1,14 @@
 from django.urls import path
 
 from .views import (
-		RegistroView,
 		add_carrito,
 		CheckView,
 		home,
 	)
+
+from .views_user import(
+	RegistroView
+)
 
 urlpatterns = [
 	
