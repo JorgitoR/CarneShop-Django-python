@@ -7,6 +7,10 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType 
 from django.contrib.contenttypes.fields import GenericRelation
 
+from django.utils.text import slugify
+from django.db.models.signals import post_save, pre_save
+
+
 class Usuario(AbstractUser):
 	admin = models.BooleanField(default=False)
 	cliente = models.BooleanField(default=False)
@@ -40,14 +44,14 @@ class OrdenarProducto(models.Model):
 
 
 
-class OrdenarPedido(models.Model):
+class Orden(models.Model):
 	class Estados(models.TextChoices):
 		PROCESO = "EN PROCESO DE ENTREGA", "En proceso de entrega",
 		ENTREGADO = "ENTREGADO", "Entregado",
 		DEVOLUCION = "DEVOLUCION", "Devolucion"
 
 	usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='ordenar')
-	producto = models.ManyToManyField(OrdenarProducto, through='pedidos')
+	productos = models.ManyToManyField(OrdenarProducto, through='pedidos')
 	date = models.DateTimeField(auto_now_add=True)
 	ordenado = models.BooleanField(default=False)
 
@@ -57,7 +61,7 @@ class OrdenarPedido(models.Model):
 
 class pedidos(models.Model):
 	pedidos = models.ForeignKey(OrdenarProducto, on_delete=models.CASCADE)
-	orden = models.ForeignKey(OrdenarPedido, on_delete=models.CASCADE)
+	orden = models.ForeignKey(Orden, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.pedidos.content_object.titulo
@@ -80,3 +84,26 @@ class producto(models.Model):
 
 	stock = models.IntegerField(default=0, verbose_name='Stock')
 	precio = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, verbose_name='Precio de venta')
+
+	slug = models.SlugField(blank=True, null=True, unique=True)
+
+	@property
+	def get_content_type(self):
+		instance = self
+		content_type = ContentType.objects.get_for_model(producto)
+		return content_type
+
+
+def crear_url(instance, nueva_url=None):
+	slug =  slugify(instance.titulo)
+	if nueva_url is not None:
+		slug =  nueva_url
+
+	return slug
+
+
+def slug_save(sender, instance, *args, **kwargs):
+	if not instance.slug:
+		instance.slug = crear_url(instance)
+
+pre_save.connect(slug_save, sender=producto)
