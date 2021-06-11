@@ -89,6 +89,9 @@ class producto(models.Model):
 
 	slug = models.SlugField(blank=True, null=True, unique=True)
 
+	def __str__(self):
+		return self.titulo
+
 	@property
 	def get_content_type(self):
 		instance = self

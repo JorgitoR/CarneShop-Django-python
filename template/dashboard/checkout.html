@@ -5,7 +5,8 @@
 
 	{% include 'dashboard/header.html' %}
 
-	<div style="margin: 30px 0;">
+	<div class="container_mainCheckouts" >
+	<h6>Tus Compras</h6>
 	<div class="checkContainer">
 		
 		{% for item in orden.productos.all %}
@@ -32,7 +33,14 @@
 
 <style>
 	
-	h6{
+	.container_mainCheckouts{
+		padding: 0 0 0.5em;
+		height: 100%;
+		overflow: auto;
+		padding-top: 5.2em;
+	}
+	
+	.container_mainCheckouts  h6{
 		font-size: 0.975em;
 		font-weight: 500;
 		color: #bbbbbb;
