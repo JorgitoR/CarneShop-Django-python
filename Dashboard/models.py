@@ -102,8 +102,10 @@ class Orden(models.Model):
 		return total
 
 	def descuento(self):
+		descuento = 0
 		if self.cupon:
 			descuento = self.cupon.valor
+
 		return descuento
 
 	def precio_total_with_discount(self):
