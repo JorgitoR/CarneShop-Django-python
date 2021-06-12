@@ -19,6 +19,7 @@
 				<div class="ml-2">
 					<h5>{{item.content_object.titulo}}</h5>
 					<p>{{item.content_object.texto}}</p>
+					<span>{{item.content_object.precio}}</span>
 				</div>
 			</div>
 
@@ -42,6 +43,13 @@
 		<div class="row mx-0">
 			
 		</div>
+
+		{% if orden.precio_total %}
+			<p>
+				{{orden.precio_total}}
+			</p>
+		{% endif %}
+
 	</div>
 
 <style>

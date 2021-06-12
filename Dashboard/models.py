@@ -70,6 +70,9 @@ class OrdenarProducto(models.Model):
 	def __str__(self):
 		return self.usuario.username
 
+
+	def get_total(self):
+		return self.cantidad * self.content_object.precio
 	
 
 class Orden(models.Model):
@@ -88,6 +91,13 @@ class Orden(models.Model):
 
 	def __str__(self):
 		return "{}".format(self.usuario)
+
+
+	def precio_total(self):
+		total = 0
+		for item in self.productos.all():
+			total += item.get_total()
+		return total
 
 class pedidos(models.Model):
 	pedidos = models.ForeignKey(OrdenarProducto, on_delete=models.CASCADE)
