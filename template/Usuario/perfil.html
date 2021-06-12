@@ -4,17 +4,19 @@
 {% block contenido %}
 
 <div class="perfil_contenedor">
-	<div class="perfil_header">
-		<div class="text-right mb-0 perfil_head">
-			<a href="{% url 'home' %}">
-				<img src="{% static 'img/arrow.png' %}">
-			</a>
-		</div>
-	</div>
+	
+	{% include 'dashboard/header.html' %}
 
 	<img src="{% static 'img/user-img.jpg' %}" class="perfil_img">
 	<h4>{{perfil.get_full_name}}</h4>
 	<p>@{{perfil.username}}</p>
+
+	<a href="{% url 'logout' %}">
+		<button>
+			Log Out
+		</button>
+	</a>
+
 </div>
 
 <style>

@@ -20,11 +20,10 @@ from django.views.generic import View
 def home(request):
 
 	product = producto.objects.all()
-	usuario = request.user
+	
 
 	context ={
 		'product':product,
-		'usuario':usuario
 	}
 
 	return render(request, 'dashboard/home.html', context)
@@ -48,6 +47,7 @@ def add_carrito(request, slug):
 
 
 		cantidad_ordenada = OrdenarProducto.objects.filter(pedido__slug=item.slug, ordenado=True).aggregate(cantidad_suma=Sum('cantidad'))
+		
 		cantidad = cantidad_ordenada['cantidad_suma']
 		print(cantidad)
 		min_cantidad = 1
@@ -93,7 +93,7 @@ class CheckView(View):
 	def get(self, *args, **kwargs):
 		try:
 			orden = Orden.objects.get(usuario=self.request.user, ordenado=False)
-			print(self.request.geo_data.ip_address)
+
 			context = {
 				'orden':orden
 			}

@@ -69,6 +69,8 @@ class OrdenarProducto(models.Model):
 	def __str__(self):
 		return self.usuario.username
 
+	
+
 
 
 class Orden(models.Model):
@@ -118,6 +120,8 @@ class producto(models.Model):
 
 	def __str__(self):
 		return self.titulo
+
+
 
 	@property
 	def get_content_type(self):
