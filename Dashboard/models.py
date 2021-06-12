@@ -70,6 +70,8 @@ class OrdenarProducto(models.Model):
 	def __str__(self):
 		return self.usuario.username
 
+	def get_total_with_discount(self):
+		cupon = self.content_object
 
 	def get_total(self):
 		return self.cantidad * self.content_object.precio
@@ -99,6 +101,19 @@ class Orden(models.Model):
 			total += item.get_total()
 		return total
 
+	def descuento(self):
+		if self.cupon:
+			descuento = self.cupon.valor
+		return descuento
+
+	def precio_total_with_discount(self):
+		total = 0
+		for item in self.productos.all():
+			total += item.get_total()
+		if self.cupon:
+			total = total - self.cupon.valor
+		return total
+
 class pedidos(models.Model):
 	pedidos = models.ForeignKey(OrdenarProducto, on_delete=models.CASCADE)
 	orden = models.ForeignKey(Orden, on_delete=models.CASCADE)
@@ -108,7 +123,7 @@ class pedidos(models.Model):
 
 class Cupon(models.Model):
 	codigo = models.CharField(max_length=15)
-	valor = models.FloatField()
+	valor = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, verbose_name='Descuento')
 
 	def __str__(self):
 		return self.codigo

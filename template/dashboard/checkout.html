@@ -53,8 +53,21 @@
 
 		{% if orden.precio_total %}
 			<p>
-				{{orden.precio_total}}
+				<strong>Precio Total:</strong> {{orden.precio_total}}
 			</p>
+
+		{% endif %}
+
+		{% if orden.descuento %}
+			<p>
+				<strong>
+					Descuento: 
+				</strong>{{orden.descuento}}
+			</p>
+		{% endif %}
+
+		{% if orden.precio_total_with_discount %}
+			<p>{{orden.precio_total_with_discount}}</p>
 		{% endif %}
 
 	</div>
