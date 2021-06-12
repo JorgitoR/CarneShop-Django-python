@@ -133,6 +133,10 @@ class producto(models.Model):
 	def cantidad_pedida(self):
 		producto = OrdenarProducto.objects.filter(pedido__slug=self.slug, ordenado=True).aggregate(cantidad_suma=Sum('cantidad'))
 		cantidad = producto['cantidad_suma']
+
+		if cantidad is None:
+			cantidad = 0
+	
 		return cantidad
 
 	@property

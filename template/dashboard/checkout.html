@@ -13,13 +13,13 @@
 
 		{% if item.stock == 0 %}
 		{% else %}	
-		<div>
-			<div class="d-flex align-items-center">
+		<div class="div_producto">
+			<div class="d-flex align-items-center" >
 				<img src="{{item.content_object.img.url}}">
 				<div class="ml-2">
 					<h5>{{item.content_object.titulo}}</h5>
 					<p>{{item.content_object.texto}}</p>
-					<span>{{item.content_object.precio}}</span>
+					<span><strong>Precio:</strong> {{item.content_object.precio}}</span>
 				</div>
 			</div>
 
@@ -81,6 +81,14 @@
 		align-items: center;
 		justify-content: space-between;
 		margin-bottom: 0.5em;
+	}
+
+	.div_producto{
+		border-bottom: 1px solid #e6e6e6;
+	}
+
+	.div_producto:last-child{
+		border:none;
 	}
 
 	.checkContainer img{
