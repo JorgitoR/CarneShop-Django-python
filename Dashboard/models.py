@@ -122,7 +122,8 @@ class producto(models.Model):
 
 	def cantidad_pedida(self):
 		producto = OrdenarProducto.objects.filter(pedido__slug=self.slug, ordenado=True).aggregate(cantidad_suma=Sum('cantidad'))
-		return producto
+		cantidad = producto['cantidad_suma']
+		return cantidad
 
 	@property
 	def get_content_type(self):
