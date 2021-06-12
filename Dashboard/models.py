@@ -10,6 +10,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.utils.text import slugify
 from django.db.models.signals import post_save, pre_save
 
+from django.db.models import Sum
 
 class Usuario(AbstractUser):
 	admin = models.BooleanField(default=False)
@@ -71,8 +72,6 @@ class OrdenarProducto(models.Model):
 
 	
 
-
-
 class Orden(models.Model):
 	class Estados(models.TextChoices):
 		PROCESO = "EN PROCESO DE ENTREGA", "En proceso de entrega",
@@ -121,7 +120,9 @@ class producto(models.Model):
 	def __str__(self):
 		return self.titulo
 
-
+	def cantidad_pedida(self):
+		producto = OrdenarProducto.objects.filter(pedido__slug=self.slug, ordenado=True).aggregate(cantidad_suma=Sum('cantidad'))
+		return producto
 
 	@property
 	def get_content_type(self):

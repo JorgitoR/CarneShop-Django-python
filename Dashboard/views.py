@@ -55,6 +55,7 @@ def add_carrito(request, slug):
 		if cantidad >= min_cantidad:
 			
 			total = item.stock - cantidad	
+			print('TOTAL', total)
 
 			if ordenar_producto.cantidad < total:
 				if orden_realizada.productos.filter(pedido__slug=item.slug).exists():
