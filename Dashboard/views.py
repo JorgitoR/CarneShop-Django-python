@@ -89,6 +89,40 @@ def add_carrito(request, slug):
 		messages.info(request, "Este articulo fue agregado a su carrito.")
 		return redirect("check_out")
 
+def minus_cart(request, slug):
+	item = get_object_or_404(producto, slug=slug)
+
+	qs = Orden.objects.filter(usuario=request.user, ordernado=False)
+
+	if qs.exists():
+		orden = qs[0]
+		print(orden)
+
+		if orden.productos.filter(pedido__slug=item.slug).exists():
+
+			item_orden = OrdenarProducto.objects.filter(
+
+				pedido =item,
+				usuario=request.user,
+				ordenado=True
+			)[0]
+
+			if item_orden.cantidad > 0:
+				item_orden.cantidad -= 1
+				item_orden.save()
+			else:
+				orden.productos.remove(item_orden)
+
+			messages.info(request, "La cantidad de este producto fue actualizada")
+			return redirect("check_out")
+		
+		else:
+			messages.info(request, "No existe este producto en el carro de compras")
+			return redirect("check_out")
+	else:
+		messages.info(request, "No tienes una orden Activa")
+		return redirect("check_out")
+
 
 class CheckView(View):
 	def get(self, *args, **kwargs):

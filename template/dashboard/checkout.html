@@ -19,14 +19,21 @@
 				<div class="ml-2">
 					<h5>{{item.content_object.titulo}}</h5>
 					<p>{{item.content_object.texto}}</p>
-					<span><strong>Precio:</strong> ${{item.content_object.precio}}</span>
+
+					<span><strong>Precio:</strong> ${{item.content_object.precio}} <strong>X</strong> Libra</span>
+					<div>
+						<span><strong>Cantidad:</strong> {{item.cantidad}}</span>
+					</div>
 				</div>
 			</div>
 
 			<div>
-				
-				<button>+</button>
-				<button>-</button>
+				<a href="{% url 'add_carrito' item.content_object.slug %}">
+					<button>+</button>
+				</a>
+				<a href="">
+					<button>-</button>
+				</a>
 			</div>
 
 			<button class="ShowMore">
