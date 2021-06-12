@@ -92,7 +92,7 @@ def add_carrito(request, slug):
 def minus_cart(request, slug):
 	item = get_object_or_404(producto, slug=slug)
 
-	qs = Orden.objects.filter(usuario=request.user, ordernado=False)
+	qs = Orden.objects.filter(usuario=request.user, ordenado=False)
 
 	if qs.exists():
 		orden = qs[0]

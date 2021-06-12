@@ -11,7 +11,7 @@
 		
 		{% for item in orden.productos.all %}
 
-		{% if item.stock == 0 %}
+		{% if item.cantidad == 0 %}
 		{% else %}	
 		<div class="div_producto">
 			<div class="d-flex align-items-center" >
@@ -31,7 +31,7 @@
 				<a href="{% url 'add_carrito' item.content_object.slug %}">
 					<button>+</button>
 				</a>
-				<a href="">
+				<a href="{% url 'minus_cart' item.content_object.slug %}">
 					<button>-</button>
 				</a>
 			</div>
