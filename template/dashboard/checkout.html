@@ -6,7 +6,7 @@
 	{% include 'dashboard/header.html' %}
 
 	<div class="container_mainCheckouts" >
-	<h6>Tus Compras</h6>
+	<h6>TU CARRITO</h6>
 	<div class="checkContainer">
 		
 		{% for item in orden.productos.all %}
@@ -52,31 +52,9 @@
 
 	</div>
 
-	{% include 'dashboard/resumen.html' %}
+		{% include 'dashboard/resumen.html' %}
 
-		<h6>RESUMEN DEL PEDIDO</h6>
-		<div class="row mx-0">
-			
-		</div>
 
-		{% if orden.precio_total %}
-			<p>
-				<strong>PRECIO ORIGINAL:</strong> ${{orden.precio_total}}
-			</p>
-
-		{% endif %}
-
-		{% if orden.descuento %}
-			<p>
-				<strong>
-					DESCUENTO: 
-				</strong>${{orden.descuento}}
-			</p>
-		{% endif %}
-
-		{% if orden.precio_total_with_discount %}
-			<p><strong>TOTAL:</strong> ${{orden.precio_total_with_discount}}</p>
-		{% endif %}
 
 	</div>
 
@@ -120,7 +98,7 @@
 	}
 
 	.checkContainer img{
-		width: 40px;
+		width: 80px;
 		border-radius: 1.1em;
 	}
 
