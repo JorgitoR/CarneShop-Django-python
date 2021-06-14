@@ -50,3 +50,19 @@ class DirecionForm(forms.ModelForm):
 			'numero1',
 			'numero2'
 		]
+
+	widget = {
+
+		'ciudad': forms.TextInput(
+			attrs={
+				'placeholder':'Ingresa Tu ciudad',
+			}
+		),
+
+		'barrio':forms.TextInput(
+			attrs={
+			 	'placeholder':'Ingresa el Barrio'
+			}
+		)
+
+	}
