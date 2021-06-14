@@ -1,14 +1,14 @@
 {% load static %}
 <div class="header">
-		<a href="">
-			<img src="{% static 'img/search.png' %}">
+		<a href="{% url 'home' %}" class="a_home">
+			CarneShop
 		</a>
 		<div class="nav_items">
 			<a href="">
 				<img src="{% static 'img/invite.png' %}">
 			</a>
-			<a href="">
-				<img src="{% static 'img/calendar.png' %}">
+			<a href="{% url 'check_out' %}">
+				<img src="{% static 'img/cart.png' %}">
 			</a>
 			<a href="">
 				<img src="{% static 'img/noti.png' %}">
@@ -20,6 +20,11 @@
 </div>
 
 <style>
+		
+		.a_home{
+			color: #333;
+		}
+
 		.header{
 		display: flex;
 		align-items: center;

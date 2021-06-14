@@ -34,6 +34,11 @@
 				<a href="{% url 'minus_cart' item.content_object.slug %}">
 					<button>-</button>
 				</a>
+				<a href="">
+					<button>
+						<img src="{% static 'img/delete.png' %}" style="width: 17px; height: 18px;">
+					</button>
+				</a>
 			</div>
 
 			<button class="ShowMore">
@@ -46,14 +51,17 @@
 
 
 	</div>
-		<h6>DIRECCIÓN DE ENTREGA</h6>
+
+	{% include 'dashboard/resumen.html' %}
+
+		<h6>RESUMEN DEL PEDIDO</h6>
 		<div class="row mx-0">
 			
 		</div>
 
 		{% if orden.precio_total %}
 			<p>
-				<strong>Precio Total:</strong> {{orden.precio_total}}
+				<strong>PRECIO ORIGINAL:</strong> ${{orden.precio_total}}
 			</p>
 
 		{% endif %}
@@ -61,13 +69,13 @@
 		{% if orden.descuento %}
 			<p>
 				<strong>
-					Descuento: 
-				</strong>{{orden.descuento}}
+					DESCUENTO: 
+				</strong>${{orden.descuento}}
 			</p>
 		{% endif %}
 
 		{% if orden.precio_total_with_discount %}
-			<p>{{orden.precio_total_with_discount}}</p>
+			<p><strong>TOTAL:</strong> ${{orden.precio_total_with_discount}}</p>
 		{% endif %}
 
 	</div>
