@@ -10,7 +10,8 @@ from .views import (
 from .views_user import(
 	RegistroView,
 	LogOutView,
-	perfil
+	perfil,
+	DirecionCrear
 )
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
 	path('registro2/', RegistroView.as_view(), name='registro'),
 	path('logout/', LogOutView.as_view(), name='logout'),
 	path('perfil/@<username>', perfil, name='perfil'),
+	path('crear_direccion/', DirecionCrear.as_view(), name='crear_direccion'),
 
 	path('home/', home, name="home"),
 	path('add_carrito/<slug>/', add_carrito, name='add_carrito'),
