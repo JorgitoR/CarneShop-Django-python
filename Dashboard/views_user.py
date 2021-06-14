@@ -7,6 +7,8 @@ from .forms import RegistroForm, DirecionForm
 from .models import (Usuario,
 					direccion)
 
+from django.http import JsonResponse
+
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
 from django.contrib import messages
@@ -52,3 +54,19 @@ class DirecionCrear(CreateView):
 	form_class = DirecionForm
 	template_name= 'Usuario/address.html'
 	success_url=reverse_lazy('')
+
+
+	def post(self, request, *args, **kwargs):
+		data = {}
+		try:
+			action = request.POST['action']
+
+			if action == 'crear':
+				form = self.get_form()
+				data  = form.save()
+			else:
+				data['error'] = 'No has ingresado alguna opcion'
+		except Exception as e:
+			data['error']=str(e)
+
+		return JsonResponse(data)
