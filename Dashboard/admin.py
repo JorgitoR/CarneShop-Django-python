@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Usuario, categoria, OrdenarProducto, Orden, pedidos, Cupon, producto
+from .models import Usuario, categoria, OrdenarProducto, Orden, pedidos, Cupon, producto, direccion
 
 
 class ContentTypeInline(admin.TabularInline):
@@ -12,6 +12,7 @@ class productoAdmin(admin.ModelAdmin):
 
 	inlines = [ContentTypeInline]
 
+admin.site.register(direccion)
 admin.site.register(Cupon)
 admin.site.register(pedidos)
 admin.site.register(OrdenarProducto)

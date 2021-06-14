@@ -11,7 +11,8 @@ from .views_user import(
 	RegistroView,
 	LogOutView,
 	perfil,
-	DirecionCrear
+	DirecionCrear,
+	UpdateDireccion
 )
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
 	path('logout/', LogOutView.as_view(), name='logout'),
 	path('perfil/@<username>', perfil, name='perfil'),
 	path('crear_direccion/', DirecionCrear.as_view(), name='crear_direccion'),
+	path('UpdateDireccion/', UpdateDireccion.as_view(), name='UpdateDireccion'),
 
 	path('home/', home, name="home"),
 	path('add_carrito/<slug>/', add_carrito, name='add_carrito'),

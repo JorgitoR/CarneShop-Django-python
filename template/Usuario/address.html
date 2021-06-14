@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load widget_tweaks %}
 {% load static %}
 
 {% block contenido %}
@@ -16,19 +17,6 @@
 
 	<form method="POST" action='.' enctype="multipart/form-data">
 		
-		<div class="card card-primary">
-			<div class="card-header">
-				<h3 class="card-title">  
-					{% if action == 'crear' %}
-                    	<i class="fas fa-plus"></i>
-					{% else %}
-						<i class="fas fa-edit"></i>
-					{% endif %}
-
-					{{titulo}}
-				</h3>
-			</div>
-		</div>
 
 		<div class="card-body">
 			{% csrf_token %}
@@ -50,12 +38,20 @@
 					</ul>
 				</div>
 			{% endif %}
+
 			{% for field in form.visible_fields %}
 				<div class="form-group">
 					<label>{{field.label}}</label>
+					{{field|add_class:'form-control'|attr:'autocomplete:off'}}
 				</div>
 			{% endfor %}
+
+			<button type="submit" class="btn-center btn btn-primary btn-flat">
+				Guardar dirección
+			</button>
+
 		</div>
+
 
 	</form>
 
@@ -94,6 +90,11 @@
 	font-size: 1.2em;
 }
 
+.btn-center{
+	display: block;
+	outline: none;
+	margin: auto;
+}
 
 </style>
 

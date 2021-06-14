@@ -46,23 +46,25 @@ class DirecionForm(forms.ModelForm):
 			'barrio',
 			'kind_address',
 			'direccion',
-			'hastag',
 			'numero1',
 			'numero2'
 		]
 
-	widget = {
+		widgets = {
+			
 
-		'ciudad': forms.TextInput(
-			attrs={
-				'placeholder':'Ingresa Tu ciudad',
-			}
-		),
 
-		'barrio':forms.TextInput(
-			attrs={
-			 	'placeholder':'Ingresa el Barrio'
-			}
-		)
+			'ciudad': forms.TextInput(
+				attrs={
+					'placeholder':'Ingresa Tu ciudad',
+				}
+			),
 
-	}
+			'barrio':forms.TextInput(
+				attrs={
+			 		'placeholder':'Ingresa el Barrio'
+				}
+			)
+
+		}
+

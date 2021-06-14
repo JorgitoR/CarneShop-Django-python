@@ -21,6 +21,11 @@
 					<p>
 						DESCUENTO: ${{orden.descuento}}
 					</p>
+
+				{% else %}
+					<p>
+						DESCUENTO: $0.00
+					</p>	
 				{% endif %}
 
 				{% if orden.precio_total_with_discount %}
@@ -51,6 +56,7 @@
 	justify-content: center;
 	background-color: #f2f0e4;
 	margin-top: 20px;
+	margin-bottom: 30px;
 
 }
 

@@ -63,7 +63,10 @@ class DirecionCrear(CreateView):
 
 			if action == 'crear':
 				form = self.get_form()
-				data  = form.save()
+				data  = form.save(commit=False)
+				data.usuario = request.user
+				data.save()
+
 			else:
 				data['error'] = 'No has ingresado alguna opcion'
 		except Exception as e:
@@ -76,4 +79,36 @@ class DirecionCrear(CreateView):
 		context['titulo']= "Direccion"
 		context['url'] = self.success_url
 		context['action'] = "crear"
+		return context
+
+
+class UpdateDireccion(UpdateView):
+	model= direccion
+	form_class = DirecionForm
+	template_name='Usuario/address.html'
+	success_url = reverse_lazy('')
+	url_redirect = success_url
+
+	def post(self, request, *args, **kwargs):
+		data = {}
+		try:
+			action = request.POST['action']
+			if action == 'editar':
+				form = self.get_form()
+				data = form.save(commit=False)
+				data.usuario = request.user 
+				data.save()
+			else:
+				data['error'] = "Ha ocurrido un Error"
+
+		except Exception as e:
+			data['error'] = str(e)
+
+		return JsonResponse(data)
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['titulo'] = 'Editar'
+		context['url'] = self.url_redirect
+		context['action'] = 'editar'
 		return context
