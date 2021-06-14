@@ -27,7 +27,7 @@ class direccion(models.Model):
 
 	ciudad = models.CharField(max_length=50, default='Aguachica')
 	barrio = models.CharField(max_length=50, blank=True, null=True)
-	kind_address = models.CharField(max_length=20, choices=kind_address.choices)
+	kind_address = models.CharField(verbose_name='Tipo de Direccion', max_length=20, choices=kind_address.choices)
 	direccion = models.CharField(max_length=20)
 	hastag = models.CharField(max_length=1, default='#')
 	numero1 = models.CharField(max_length=2)

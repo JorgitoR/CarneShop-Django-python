@@ -13,6 +13,52 @@
 			Dirección de entrega
 		</h3>
 	</div>
+
+	<form method="POST" action='.' enctype="multipart/form-data">
+		
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">  
+					{% if action == 'crear' %}
+                    	<i class="fas fa-plus"></i>
+					{% else %}
+						<i class="fas fa-edit"></i>
+					{% endif %}
+
+					{{titulo}}
+				</h3>
+			</div>
+		</div>
+
+		<div class="card-body">
+			{% csrf_token %}
+			<input type="hidden"  name="action" value="{{action}}">
+			{% if form.errors %}
+				<div class="alert alert-danger alert-dismissible">
+					<button class="close">
+						x
+					</button>
+					<h5>
+						<i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro
+					</h5>
+					<ul>
+						{% for field in form %}
+							{% for error in field.errors %}
+								<li>{{error}}</li>
+							{% endfor %}
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			{% for field in form.visible_fields %}
+				<div class="form-group">
+					<label>{{field.label}}</label>
+				</div>
+			{% endfor %}
+		</div>
+
+	</form>
+
 </div>
 
 <style>
