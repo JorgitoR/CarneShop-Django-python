@@ -29,7 +29,11 @@
 				</div>
 
 				<div>
-					Direccion De entrega
+					Dirección De entrega
+
+					<a href="{% url 'crear_direccion' %}" class="a_direccion btn btn-primary d-flex align-items-center mb-3">
+						Crear Dirección de entrega
+					</a>
 				</div>
 			</div>
 
@@ -119,5 +123,9 @@
 	border-right: 1px solid #cccccc;
 }
 
+.a_direccion{
+
+	text-align: center;
+}
 
 </style>
