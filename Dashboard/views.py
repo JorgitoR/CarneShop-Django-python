@@ -7,7 +7,8 @@ from .models import (Usuario,
 					producto, 
 					OrdenarProducto, 
 					Orden, 
-					pedidos)
+					pedidos,
+					direccion)
 
 from django.contrib.auth import authenticate, login
 from django.db.models import Sum
@@ -128,9 +129,11 @@ class CheckView(View):
 	def get(self, *args, **kwargs):
 		try:
 			orden = Orden.objects.get(usuario=self.request.user, ordenado=False)
+			address = direccion.objects.filter(usuario=self.request.user).first()
 
 			context = {
-				'orden':orden
+				'orden':orden,
+				'direccion':address
 			}
 
 			return render(self.request, "dashboard/checkout.html", context) 

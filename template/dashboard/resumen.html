@@ -36,9 +36,26 @@
 				<div>
 					Dirección De entrega
 
+					{% if request.user.direccion %}
+					<a href="{% url 'UpdateDireccion' direccion.usuario %}" class="a_direccion btn btn-primary d-flex align-items-center mb-3">
+						Editar Dirección de entrega
+					</a>
+					{% else %}
 					<a href="{% url 'crear_direccion' %}" class="a_direccion btn btn-primary d-flex align-items-center mb-3">
 						Crear Dirección de entrega
 					</a>
+					{% endif %}
+					
+						<p>
+							{{direccion.usuario}}
+						</p>
+						<p>
+							{{direccion.ciudad}}
+						</p>
+						<p>
+							{{direccion.barrio}}
+						</p>
+
 				</div>
 			</div>
 

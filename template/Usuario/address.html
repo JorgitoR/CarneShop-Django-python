@@ -10,9 +10,15 @@
 		<a href="{% url 'check_out' %}">
 			<img src="{% static 'img/arrow.png' %}" style="width: 15px;">
 		</a>
+		{% if action == 'crear' %}
 		<h3>
 			Dirección de entrega
 		</h3>
+		{% else %}
+		<h3>
+			Editar Dirección de entrega
+		</h3>
+		{% endif %}
 	</div>
 
 	<form method="POST" action='.' enctype="multipart/form-data">

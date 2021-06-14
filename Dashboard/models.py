@@ -45,6 +45,9 @@ class direccion(models.Model):
 
 
 
+	def get_absolute_url(self):
+		return f"editar/direccion/{self.pk}"
+
 class categoria(models.Model):
 	nombre = models.CharField(max_length=100)
 	color = models.CharField(max_length=7, default="#333")
@@ -87,6 +90,8 @@ class Orden(models.Model):
 	productos = models.ManyToManyField(OrdenarProducto, through='pedidos')
 	date = models.DateTimeField(auto_now_add=True)
 	ordenado = models.BooleanField(default=False)
+
+	direccion_compra = models.ForeignKey(direccion, on_delete=models.SET_NULL, blank=True, null=True) 
 
 	cupon = models.ForeignKey('Cupon', on_delete=models.SET_NULL, blank=True, null=True)
 	estado = models.CharField(max_length=100, choices=Estados.choices)
