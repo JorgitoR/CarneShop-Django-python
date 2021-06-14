@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="div_address">
+	<div class="header">
+		<a href="{% url 'check_out' %}">
+			<img src="{% static 'img/arrow.png' %}" style="width: 15px;">
+		</a>
+		<h3>
+			Dirección de entrega
+		</h3>
+	</div>
+</div>
+
+<style>
+	
+	.div_address{
+
+		padding-top: 3.5em;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-bottom: 3.5em;
+
+		overflow: auto;
+		height: 100%;
+	}
+
+	.header{
+	text-align: center;
+	padding: 0.5em 0.5em;
+	position: relative;
+	margin-bottom: 0.5em;
+}
+
+.header img{
+	height: 15px;
+	position: absolute;
+	left: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.header h3{
+	margin: 0;
+	font-size: 1.2em;
+}
+
+
+</style>
+
+{% endblock %}
