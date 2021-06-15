@@ -171,7 +171,9 @@ class CheckView(View):
 
 			context = {
 				'orden':orden,
-				'direccion':address
+				'cuponForm':CuponForm(),
+				'direccion':address,
+				'DISPLAY_CUPON_FORM':True
 			}
 
 			return render(self.request, "dashboard/checkout.html", context) 
@@ -183,7 +185,7 @@ class CheckView(View):
 
 def obtener_cupon(request, code):
 	try:
-		cupon = Cupon.objects.get(codigo=codigo)
+		cupon = Cupon.objects.get(codigo=code)
 		return cupon
 	except ObjectDoesNotExist:
 		messages.info(request, "Este cupon no existe")

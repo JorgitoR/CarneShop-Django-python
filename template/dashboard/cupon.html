@@ -1,0 +1,15 @@
+{% if DISPLAY_CUPON_FORM %}
+	
+	<form method="POST" class="card p-2" action="{% url 'AddCuponView' %}">
+		{% csrf_token %}
+		<div class="input-group">
+			{{cuponForm.codigo}}
+			<div class="input-group-append">
+				<button class="btn btn-secondary btn-md waves-effect m-0">
+					Redimir
+				</button>
+			</div>
+		</div>
+	</form>
+	
+{% endif %}
