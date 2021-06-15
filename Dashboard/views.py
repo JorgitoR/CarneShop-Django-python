@@ -140,16 +140,15 @@ def eliminar_del_cart(request, slug):
 		if orden.productos.filter(pedido__slug=item.slug).exists():
 
 			articulo = OrdenarProducto.objects.filter(
-					content_type=item.get_content_type,
-					object_id=item.id,
+					pedido=item,
 					usuario=request.user,
-					ordenado=False
+					ordenado=True
 			)[0]
 
 			pedido = pedidos.objects.filter(
 				pedidos = articulo,
 				orden = orden_qs
-			).delete()
+			)
 
 			articulo.delete()
 
