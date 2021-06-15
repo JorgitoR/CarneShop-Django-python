@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Usuario, direccion
+from .models import Usuario, direccion, Cupon
 
 class RegistroForm(UserCreationForm):
 
@@ -68,3 +68,13 @@ class DirecionForm(forms.ModelForm):
 
 		}
 
+
+class CuponForm(forms.Form):
+	codigo = forms.CharField(widget=forms.TextInput(attrs={
+
+		'class':'form-control',
+		'placeholder':'Codigo de promocion',
+		'arial-label':'Recipient\'s username',
+		'aria-describedby': 'basic-addon2'
+
+	}))

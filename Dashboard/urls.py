@@ -6,6 +6,7 @@ from .views import (
 		minus_cart,
 		home,
 		eliminar_del_cart,
+		AddCuponView
 	)
 
 from .views_user import(
@@ -29,5 +30,6 @@ urlpatterns = [
 	path('check_out/', CheckView.as_view(), name='check_out'),
 	path('minus_cart/<slug>/', minus_cart, name='minus_cart'),
 	path('delete/<slug>/', eliminar_del_cart, name='eliminar_del_cart'),
+	path('add-cupon/', AddCuponView.as_view(), name='AddCuponView'),
 
 ]

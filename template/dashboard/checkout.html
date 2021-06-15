@@ -6,6 +6,20 @@
 	{% include 'dashboard/header.html' %}
 
 	<div class="container_mainCheckouts" >
+
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  	<span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% block content %}
+        {% endblock %}
+ 
+         
+
 	<h6>TU CARRITO</h6>
 	<div class="checkContainer">
 		
@@ -59,7 +73,16 @@
 	</div>
 
 <style>
-	
+	.close{
+		outline: none;
+		cursor: pointer;
+	}
+
+	.info{
+		background-color: #17a2b8;
+		color: #fff;
+	}
+
 	.container_mainCheckouts{
 		padding: 0.5em 1em;
 		height: 100%;
@@ -152,5 +175,15 @@
 	}
 
 </style>
+
+<script>
+
+	var closeBtn = document.getElementsByClassName("close")
+
+	closeBtn[0].addEventListener("click", function(){
+		this.parentElement.style.display="none";
+	})
+
+</script>
 
 {% endblock %}

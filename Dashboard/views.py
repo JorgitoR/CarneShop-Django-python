@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils import timezone
-from .forms import RegistroForm
+from .forms import RegistroForm, CuponForm
 from .models import (Usuario, 
 					producto, 
 					OrdenarProducto, 
 					Orden, 
 					pedidos,
+					Cupon,
 					direccion)
 
 from django.contrib.auth import authenticate, login
@@ -62,7 +63,7 @@ def add_carrito(request, slug):
 				if orden_realizada.productos.filter(pedido__slug=item.slug).exists():
 					ordenar_producto.cantidad += 1
 					ordenar_producto.save()
-					messages.info(request, "La cantidad fue actualizada")
+					messages.info(request, "La cantidad del producto %s fue actualizada" %(ordenar_producto.content_object.titulo))
 					return redirect('check_out')
 				else:
 					pedido = pedidos.objects.create(
@@ -176,5 +177,29 @@ class CheckView(View):
 			return render(self.request, "dashboard/checkout.html", context) 
 
 		except ObjectDoesNotExist:
-			messages.info(self.request, "No tienes una orden Activa")
-			return redirect("check_out")
+			messages.warning(self.request, "No tienes una orden Activa")
+			return redirect("/")
+
+
+def obtener_cupon(request, code):
+	try:
+		cupon = Cupon.objects.get(codigo=codigo)
+		return cupon
+	except ObjectDoesNotExist:
+		messages.info(request, "Este cupon no existe")
+		return redirect('check_out')
+
+class AddCuponView(View):
+	def post(self, *args, **kwargs):
+		form = CuponForm(self.request.POST or None)
+		if form.is_valid():
+			try:
+				codigo = form.cleaned_data.get('codigo')
+				orden = Orden.objects.get(usuario=self.request.user, ordenado=False)
+				orden.cupon = obtener_cupon(self.request, codigo)
+				orden.save()
+				messages.success(self.request, "El cupon se guardo exitosamente")
+				return redirect('check_out')
+			except ObjectDoesNotExist:
+				messages.info(self.request, "No tienes una orden activa")
+				return redirect('check_out')
