@@ -17,6 +17,10 @@
 					</p>
 				{% endif %}
 
+				{% if orden.cupon %}
+					<small>{{orden.cupon.codigo}}</small>
+				{% endif %}
+
 				{% if orden.descuento %}
 					<p>
 						DESCUENTO: ${{orden.descuento}}
@@ -45,7 +49,7 @@
 							DIRECCIÓN: {{direccion.kind_address}} {{direccion.direccion}} {{direccion.hastag}}{{direccion.numero1}}-{{direccion.numero2}}
 						</P>
 
-					{% if request.user.direccion %}
+					{% if direccion %}
 					<a href="{% url 'UpdateDireccion' direccion.usuario %}" class="a_direccion btn btn-primary d-flex align-items-center mb-3">
 						Editar Dirección de entrega
 					</a>

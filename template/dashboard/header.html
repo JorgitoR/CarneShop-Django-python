@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart_template_tags %}
 <div class="header">
 		<a href="{% url 'home' %}" class="a_home">
 			CarneShop
@@ -8,7 +9,11 @@
 				<img src="{% static 'img/invite.png' %}">
 			</a>
 			<a href="{% url 'check_out' %}">
+				
 				<img src="{% static 'img/cart.png' %}">
+				<button class="count_cart">
+					{{request.user|cart_item_count}}
+				</button>
 			</a>
 			<a href="">
 				<img src="{% static 'img/noti.png' %}">
@@ -23,6 +28,31 @@
 		
 		.a_home{
 			color: #333;
+		}
+
+		.nav_items a{
+			position: relative;
+		}
+
+		.count_cart{
+			display: flex;
+			display: inline-block;
+			line-height: 1;
+			align-items: center;
+			position: absolute;
+			height: 20px;	
+			width: 20px;
+			font-size: 10px;
+			text-align: center;
+			vertical-align: middle;
+			left: 1%;
+			top: -10px;
+			transform: translateY(-1%);
+			background-color: var(--btnBgColor)!important;
+			border-radius: 50%;
+			border:none!important;
+			color: #fff!important;
+			font-weight: 500!important;
 		}
 
 		.header{
