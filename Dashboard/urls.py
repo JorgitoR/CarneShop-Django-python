@@ -5,6 +5,7 @@ from .views import (
 		CheckView,
 		minus_cart,
 		home,
+		eliminar_del_cart,
 	)
 
 from .views_user import(
@@ -27,5 +28,6 @@ urlpatterns = [
 	path('add_carrito/<slug>/', add_carrito, name='add_carrito'),
 	path('check_out/', CheckView.as_view(), name='check_out'),
 	path('minus_cart/<slug>/', minus_cart, name='minus_cart'),
+	path('delete/<slug>/', eliminar_del_cart, name='eliminar_del_cart'),
 
 ]

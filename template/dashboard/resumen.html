@@ -35,6 +35,15 @@
 
 				<div>
 					Dirección De entrega
+						<p>
+							CIUDAD: {{direccion.ciudad}}
+						</p>
+						<p>
+							BARRIO: {{direccion.barrio}}
+						</p>
+						<P>
+							DIRECCIÓN: {{direccion.kind_address}} {{direccion.direccion}} {{direccion.hastag}}{{direccion.numero1}}-{{direccion.numero2}}
+						</P>
 
 					{% if request.user.direccion %}
 					<a href="{% url 'UpdateDireccion' direccion.usuario %}" class="a_direccion btn btn-primary d-flex align-items-center mb-3">
@@ -45,17 +54,6 @@
 						Crear Dirección de entrega
 					</a>
 					{% endif %}
-					
-						<p>
-							{{direccion.usuario}}
-						</p>
-						<p>
-							{{direccion.ciudad}}
-						</p>
-						<p>
-							{{direccion.barrio}}
-						</p>
-
 				</div>
 			</div>
 

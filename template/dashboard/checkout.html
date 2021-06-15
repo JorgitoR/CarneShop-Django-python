@@ -34,7 +34,7 @@
 				<a href="{% url 'minus_cart' item.content_object.slug %}">
 					<button>-</button>
 				</a>
-				<a href="">
+				<a href="{% url 'eliminar_del_cart' item.content_object.slug %}">
 					<button>
 						<img src="{% static 'img/delete.png' %}" style="width: 17px; height: 18px;">
 					</button>

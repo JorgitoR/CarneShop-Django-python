@@ -125,6 +125,44 @@ def minus_cart(request, slug):
 		return redirect("check_out")
 
 
+def eliminar_del_cart(request, slug):
+	item = get_object_or_404(producto, slug=slug)
+	orden_qs = Orden.objects.filter(
+
+		usuario=request.user,
+		ordenado=False
+	)
+
+	if orden_qs.exists():
+		orden = orden_qs[0]
+		print(orden)
+
+		if orden.productos.filter(pedido__slug=item.slug).exists():
+
+			articulo = OrdenarProducto.objects.filter(
+					content_type=item.get_content_type,
+					object_id=item.id,
+					usuario=request.user,
+					ordenado=False
+			)[0]
+
+			pedido = pedidos.objects.filter(
+				pedidos = articulo,
+				orden = orden_qs
+			).delete()
+
+			articulo.delete()
+
+			messages.info(request, "El producto fue eliminado del carro de compras")
+			return redirect("check_out")
+		
+		else:
+			messages.info(request, "Este producto no esta en el carro de compras")
+			return redirect("check_out")
+	else:
+		messages.info(request, "No tienes una orden activa")
+		return redirect("check_out")
+
 class CheckView(View):
 	def get(self, *args, **kwargs):
 		try:
