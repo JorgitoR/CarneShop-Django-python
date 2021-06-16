@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import string
+import random
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -93,8 +94,21 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+
+    'user_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'user.db.sqlite3',
     }
 }
+
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+DATABASE_ROUTERS = ['routers.db_routers.OtherRouter']
+SESSION_COOKIE_DOMAIN = 'devdjango.com'
+
+chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
+SECRET_KEY = '%YN&&FJ1F[R4_vT#]h*GSf.jh,Q7T^#Nf-&c/]+Ql1$-4yq<(0'
+print(SECRET_KEY)
 
 
 # Password validation
