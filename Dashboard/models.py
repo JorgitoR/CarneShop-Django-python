@@ -161,6 +161,11 @@ class producto(models.Model):
 	
 		return cantidad
 
+	def cantidad_disponible(self):
+		stock = self.stock
+		pedida = self.cantidad_pedida()
+		return stock - pedida
+
 	@property
 	def get_content_type(self):
 		instance = self

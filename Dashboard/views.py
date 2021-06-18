@@ -33,6 +33,7 @@ def home(request):
 class DeatilProducto(DetailView):
 	model = producto
 	template_name= 'dashboard/detail.html'
+	
 
 
 def add_carrito(request, slug):
