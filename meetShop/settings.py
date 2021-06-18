@@ -103,12 +103,12 @@ DATABASES = {
 }
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
-DATABASE_ROUTERS = ['routers.db_routers.OtherRouter']
-SESSION_COOKIE_DOMAIN = 'devdjango.com'
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter']
+#SESSION_COOKIE_DOMAIN = 'devdjango.com'
 
 chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
 SECRET_KEY = '%YN&&FJ1F[R4_vT#]h*GSf.jh,Q7T^#Nf-&c/]+Ql1$-4yq<(0'
-print(SECRET_KEY)
+print('key', chars)
 
 
 # Password validation

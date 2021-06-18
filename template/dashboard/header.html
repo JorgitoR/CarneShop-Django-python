@@ -18,7 +18,7 @@
 			<a href="">
 				<img src="{% static 'img/noti.png' %}">
 			</a>
-			<a href="">
+			<a href="{% url 'perfil' request.user.username %}">
 				<img src="{% static 'img/b1.png' %}">
 			</a>
 		</div>
