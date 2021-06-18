@@ -19,22 +19,32 @@
 		<div class="divDetailItem">
 			<div class="d-flex align-items-center">
 				<img src="{{object.img.url}}" class="img-item-detail">
-				<div class="ml-2">
+				<div class="ml-4">
 					
-				{{object.titulo}}
+					<h2>
+						{{object.titulo}}
+					</h2>
 
-				{{object.texto}}
+					<p>
+						Categoria:  {{object.categoria.get_categoria}} 
+					</p>
+					
+					<p>
+						Cantidad disponible: {{object.cantidad_disponible}} Libras  
+					</p>
 
-				{{object.texto}}
-				{{object.categoria}}
+				
 
-				{{object.cantidad_disponible}}
-
-				<button class="btn btn-primary">
+				<button class="btn btn-primary btn_agregar">
 					Agregar
 				</button>
 				</div>
 			</div>
+
+			<button class="Detail-Descripcion">
+				Descripción
+			</button>
+
 		</div>
 
 	</div>
@@ -42,6 +52,13 @@
 
 
 <style>
+	
+	.badge_cat{
+		padding: 7px;
+		color: #fff!important;
+		border-radius: 5px;
+		cursor: pointer;
+	}
 
 	.headerBack{
 		text-align: center;
@@ -84,8 +101,31 @@
 	}
 
 	.img-item-detail{
-		width: 120px;
+		width: 200px;
 
+	}
+
+	.btn_agregar{
+		cursor: pointer;
+		width: 200px;
+		display: block;
+		margin: auto;
+		border-radius: 50px;
+	}
+
+	.Detail-Descripcion{
+		outline: none;
+		display: flex;
+		align-items: center;
+		position: absolute;
+		bottom: -14px;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: #f4f4f4!important;
+		border:none!important;
+		color: #aaa!important;
+		box-shadow: 0px 2px 3px #cccccc;
+		font-weight: 500!important;
 	}
 
 </style>

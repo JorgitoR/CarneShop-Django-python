@@ -56,7 +56,7 @@ class categoria(models.Model):
 	def get_categoria(self):
 		nombre = escape(self.nombre)
 		color = escape(self.color)
-		html = '<span style="background:%s">%s</span>' % (self.color, self.nombre)
+		html = '<span class="badge_cat" style="background:%s">%s</span>' % (self.color, self.nombre)
 		return mark_safe(html)
 
 
