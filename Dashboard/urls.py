@@ -5,6 +5,7 @@ from .views import (
 		CheckView,
 		minus_cart,
 		home,
+		DeatilProducto,
 		eliminar_del_cart,
 		AddCuponView
 	)
@@ -26,6 +27,7 @@ urlpatterns = [
 	path('editar/direccion/@<str:username>/', UpdateDireccion.as_view(), name='UpdateDireccion'),
 
 	path('home/', home, name="home"),
+	path('id/<slug>/', DeatilProducto.as_view(), name='detail'),
 	path('add_carrito/<slug>/', add_carrito, name='add_carrito'),
 	path('check_out/', CheckView.as_view(), name='check_out'),
 	path('minus_cart/<slug>/', minus_cart, name='minus_cart'),

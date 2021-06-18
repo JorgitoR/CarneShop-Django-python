@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.utils import timezone
 from .forms import RegistroForm, CuponForm
 from .models import (Usuario, 
@@ -29,6 +29,10 @@ def home(request):
 	}
 
 	return render(request, 'dashboard/home.html', context)
+
+class DeatilProducto(DetailView):
+	model = producto
+	template_name= 'dashboard/detail.html'
 
 
 def add_carrito(request, slug):
