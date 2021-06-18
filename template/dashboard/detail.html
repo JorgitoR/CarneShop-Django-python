@@ -19,7 +19,7 @@
 		<div class="divDetailItem">
 			<div class="d-flex align-items-center">
 				<img src="{{object.img.url}}" class="img-item-detail">
-				<div class="ml-4">
+				<div class="ml-5">
 					
 					<h2>
 						{{object.titulo}}
@@ -46,8 +46,14 @@
 			</button>
 
 		</div>
-
 	</div>
+
+	<div class="divTexto-detail">
+		<p class="p_texto_detail">
+			{{object.texto}}
+		</p>
+	</div>
+
 	</div>
 
 
@@ -100,6 +106,8 @@
 		margin-bottom: 0.5em;
 	}
 
+
+
 	.img-item-detail{
 		width: 200px;
 
@@ -123,9 +131,22 @@
 		transform: translateX(-50%);
 		background-color: #f4f4f4!important;
 		border:none!important;
-		color: #aaa!important;
+		color: #333!important;
 		box-shadow: 0px 2px 3px #cccccc;
 		font-weight: 500!important;
+		border-radius: 50px;
+	}
+
+	.divTexto-detail{
+		margin-top: 20px;
+	}
+
+	.p_texto_detail{
+
+    	margin: 0 0 10px;
+    	line-height: 140%;
+    	font-weight: 500;
+    	text-align: justify;
 	}
 
 </style>
