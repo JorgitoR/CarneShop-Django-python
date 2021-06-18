@@ -141,13 +141,16 @@ class producto(models.Model):
 	titulo = models.CharField(max_length=100)
 	texto = models.TextField()
 	img = models.ImageField(upload_to='producto/%Y/%M/%d', null=True, blank=True, verbose_name='Imagen')
-
+	
 	pedido = GenericRelation(OrdenarProducto, related_query_name='pedido')
 
 	stock = models.IntegerField(default=0, verbose_name='Stock')
 	precio = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, verbose_name='Precio de venta')
 
 	slug = models.SlugField(blank=True, null=True, unique=True)
+
+	padre = models.ForeignKey("self", blank=True, null=True, on_delete=models.SET_NULL)
+	relacionados = models.ManyToManyField('self', blank=True,  related_name='relacion', through='ProductoRelacionado')
 
 	def __str__(self):
 		return self.titulo
@@ -186,3 +189,10 @@ def slug_save(sender, instance, *args, **kwargs):
 		instance.slug = crear_url(instance)
 
 pre_save.connect(slug_save, sender=producto)
+
+
+class ProductoRelacionado(models.Model):
+	item = models.ForeignKey(producto, on_delete=models.CASCADE)
+	relacionado = models.ForeignKey(producto, on_delete=models.CASCADE, related_name='item_relacionado')
+	order = models.IntegerField(default=1)
+	timestamp = models.DateTimeField(auto_now_add=True)
