@@ -56,15 +56,16 @@ def add_carrito(request, slug):
 		cantidad_ordenada = OrdenarProducto.objects.filter(pedido__slug=item.slug, ordenado=True).aggregate(cantidad_suma=Sum('cantidad'))
 		
 		cantidad = cantidad_ordenada['cantidad_suma']
-		print(cantidad)
+		print('pedida', cantidad)
 		min_cantidad = 1
 
 		if cantidad >= min_cantidad:
 			
-			total = item.stock - cantidad	
-			print('TOTAL', total)
+			disponible = item.stock - cantidad	
+			print('Disponible', disponible)
+			
 
-			if ordenar_producto.cantidad < total:
+			if  ordenar_producto.cantidad == disponible or ordenar_producto.cantidad < disponible:
 				if orden_realizada.productos.filter(pedido__slug=item.slug).exists():
 					ordenar_producto.cantidad += 1
 					ordenar_producto.save()
@@ -78,7 +79,7 @@ def add_carrito(request, slug):
 					messages.info(request, "Este articulo fue agregado al carrito de compras")
 					return redirect('check_out')
 			else:
-				messages.info(request, "Maxima Cantidad disponible %s" % total)
+				messages.info(request, "Maxima Cantidad disponible %s" % disponible)
 				return redirect('check_out')
 
 	else:
@@ -116,9 +117,14 @@ def minus_cart(request, slug):
 
 			if item_orden.cantidad > 0:
 				item_orden.cantidad -= 1
-				item_orden.save()
-			else:
-				orden.productos.remove(item_orden)
+				if item_orden.cantidad == 0:
+					item_orden.delete()
+				else:
+
+					item_orden.save()
+			#else:
+				#orden.productos.remove(item_orden)
+				#item_orden.delete()
 
 			messages.info(request, "La cantidad de este producto fue actualizada")
 			return redirect("check_out")
