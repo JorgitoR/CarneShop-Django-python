@@ -32,3 +32,7 @@ class rating(models.Model):
 	object_id = models.PositiveIntegerField()
 	content_object = GenericForeignKey("content_type", "object_id")
 
+	objects = RatingManager()
+
+
+def clasificacion_post_save(sender, instance, created, *args, **kwargs):
