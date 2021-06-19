@@ -36,3 +36,17 @@ class rating(models.Model):
 
 
 def clasificacion_post_save(sender, instance, created, *args, **kwargs):
+	if created:
+		content_type = instance.content_type
+		usuario = instance.usuario
+		qs = rating.objects.filter(
+				usuario=usuario,
+				content_type = content_type,
+				object_id=instance.object_id
+		).exclude(pk=instance.pk)
+
+	if qs.exists():
+		qs.delete()
+
+
+post_save.connect(clasificacion_post_save, sender=rating)
