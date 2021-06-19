@@ -175,6 +175,8 @@ class producto(models.Model):
 		content_type = ContentType.objects.get_for_model(producto)
 		return content_type
 
+	def get_productos_relacionados(self):
+		return self.productorelacionado_set.all()
 
 def crear_url(instance, nueva_url=None):
 	slug =  slugify(instance.titulo)

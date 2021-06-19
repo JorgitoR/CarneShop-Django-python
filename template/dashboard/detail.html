@@ -54,6 +54,14 @@
 		</p>
 	</div>
 
+	<div class="div_relacionados">
+		
+		{% for related in object.get_productos_relacionados %}	
+				{{related.item}}
+		{% endfor %}		
+
+	</div>
+
 	</div>
 
 
