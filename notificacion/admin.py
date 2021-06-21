@@ -8,9 +8,6 @@ class NotificacionAdmin(AbstractNotificacionAdmin):
 	list_display = ('destinario', 'actor', 'verbo', 'nivel', 'no_leido', 'publico')
 	list_filter = ('nivel', 'no_leido', 'publico', 'timestamp')
 
-	def get_queryset(self, request):
-		qs = super(NotificacionAdmin, self).get_queryset(request)
-		return qs.prefetch_related('actor')
 
 
 admin.site.register(notificacion, NotificacionAdmin)
