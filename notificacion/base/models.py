@@ -15,7 +15,8 @@ from notificacion.signals import notificar
 def is_soft_delete():
 	return notificacion.settings.get_config()['USE_JSONFIELD']
 
-def assert_sorft_delete():
+
+def assert_soft_delete():
 	if not is_soft_delete():
 
 		#msg = Para usar el campo "deleted" configurar SOFT_DELETE=True en ajustes
@@ -35,12 +36,18 @@ class NotificacionQuerySet(models.QuerySet):
 	def no_leido(self, include_deleted=False):
 		"""Retornamos solos los item que no han sido leidos en el actual Queryset"""
 
+		if is_soft_delete() and not include_deleted:
+			return self.filter(no_leido=True, eliminado=False)
+
 		#cuando SOFT_DELETE=False, se supone que los desarrolladores No deben tocar el
 		#campo eliminado
 		return self.filter(no_leido=True)
 
 
 	def leido(self, include_deleted=False):
+
+		if is_soft_delete() and not include_deleted:
+			return self.filter(no_leido=False, eliminado=False)
 
 		return self.filter(no_leido=False)
 
@@ -75,6 +82,16 @@ class NotificacionQuerySet(models.QuerySet):
 		"""Retornamos solo los items eliminado en actual queryset"""
 		assert_soft_delete()
 		return self.filter(eliminado=True)
+
+
+	def activo(self):
+		"""
+			Retornamos solo activo(no-eliminado) item en el actual Queryset
+		"""
+		assert_soft_delete()
+		return self.filter(eliminado=False)
+
+	def marcar_todo_como_eliminado(self, destinario=None):
 
 
 class AbstractNotificacion(models.Model):
