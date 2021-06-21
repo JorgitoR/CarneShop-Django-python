@@ -12,6 +12,23 @@ from jsonfield.fields import JSONField
 from notificacion.signals import notificar
 
 class AbstractNotificacion(models.Model):
+
+	"""
+		Formato General:
+			<actor> <verbo> <tiempo>
+			<actor> <verbo> <objetivo> <tiempo>
+			<actor> <verbo> <action_object> <tiempo>
+		
+		Ejemplo:
+			<jorgito> <Tu pedido esta en camino> <Hace 2 minutos>
+
+		Representacion Unicode:
+			Jorgito tu pedido esta en camino Hace 2 minutos
+
+		
+
+	"""
+
 	class NIVELES(models.TextChoices):
 		exito = 'Exito', 'exito',
 		info = 'Informacion', 'informacion',
