@@ -5,6 +5,8 @@ from Dashboard.models import Usuario
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+from django.db.models.utils import timezone
+
 class Notificacion(models.Model):
 	class NIVELES(models.TextChoices):
 		exito = 'Exito', 'exito',
@@ -29,3 +31,12 @@ class Notificacion(models.Model):
 	descripcion = models.TextField(blank=True, null=True)
 
 
+	timestamp = models.DateTimeField(default=timezone.now, db_index=True)
+
+	publico = models.BooleanField(default=True, db_index=True)
+	eliminado = models.BooleanField(default=False, db_index=True)
+	emailed = models.BooleanField(default=False, db_index=True)
+	#emailed = enviado por correo electronico
+
+	data = JSONField(blank=True, null=True)
+	
