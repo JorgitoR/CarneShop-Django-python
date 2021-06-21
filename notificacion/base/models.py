@@ -37,13 +37,27 @@ class NotificacionQuerySet(models.Queryset):
 			Marcar todos los mensages como leidos en el actual Queryset
 	
 		"""
-		#
-		#
+		#Filtramos los mensajes que no han sido leidos
+		#Para luego marcarlos como leidos
 		qs = self.no_leido(True)
 		if destinario:
 			qs = qs.filter(destinario=destinario)
 
 		return qs.update(no_leido=False)
+
+
+	def marcar_todos_como_no_leidos(self, destinario=None):
+		"""
+			Marcar todo los mensages como no leidos en actual queryset
+		"""
+		#filtramos todo los mensajes 
+		qs = self.no_leido(True)
+		
+		if destinario:
+			qs = qs.filter(destinario=destinario)
+
+		return qs.update(no_leido=True)
+
 
 class AbstractNotificacion(models.Model):
 
