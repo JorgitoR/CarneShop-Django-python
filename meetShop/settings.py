@@ -161,3 +161,8 @@ APP_EMAIL = os.getenv('APP_EMAIL', 'no-reply@localhost')
 SITIO_HEADER = os.getenv('SITIO_HEADER', 'CarneShop')
 
 from .settings_emails import *
+
+CONFIGURACION_NOTIFICACIONES = {
+    
+    'USE_JSONFIELD':True,
+}

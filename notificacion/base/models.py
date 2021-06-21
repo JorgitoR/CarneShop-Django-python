@@ -12,7 +12,20 @@ from jsonfield.fields import JSONField
 from notificacion.signals import notificar
 
 
-class NotificacionQuerySet(models.Queryset):
+def is_soft_delete():
+	return notificacion.settings.get_config()['USE_JSONFIELD']
+
+def assert_sorft_delete():
+	if not is_soft_delete():
+
+		#msg = Para usar el campo "deleted" configurar SOFT_DELETE=True en ajustes
+		#delo contrario NotificacionQuerySet.no_leidon y NotificacionQueryset.leido no
+		#filtraran por el campo "deleted"
+
+		msg = 'REVERTME'
+		raise ImproperlyConfigured(msg)
+
+class NotificacionQuerySet(models.QuerySet):
 	def no_enviado(self):
 		return self.filter(emailed=False)
 
@@ -57,6 +70,11 @@ class NotificacionQuerySet(models.Queryset):
 			qs = qs.filter(destinario=destinario)
 
 		return qs.update(no_leido=True)
+
+	def eliminar(self):
+		"""Retornamos solo los items eliminado en actual queryset"""
+		assert_soft_delete()
+		return self.filter(eliminado=True)
 
 
 class AbstractNotificacion(models.Model):
