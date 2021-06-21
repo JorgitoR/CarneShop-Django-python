@@ -11,6 +11,17 @@ from jsonfield.fields import JSONField
 
 from notificacion.signals import notificar
 
+
+class NotificacionQuerySet(models.Queryset):
+	def no_enviado(self):
+		return self.filter(emailed=False)
+
+	def enviado(self):
+		return self.filter(emailed=True)
+
+	def no_leido(self, )
+
+
 class AbstractNotificacion(models.Model):
 
 	"""
