@@ -9,7 +9,9 @@ from django.utils import timezone
 from jsonfield.fields import JSONField
 #pip install jsonfield
 
-class Notificacion(models.Model):
+from .signals import notificar
+
+class AbstractNotificacion(models.Model):
 	class NIVELES(models.TextChoices):
 		exito = 'Exito', 'exito',
 		info = 'Informacion', 'informacion',
@@ -34,6 +36,7 @@ class Notificacion(models.Model):
 
 
 	timestamp = models.DateTimeField(default=timezone.now, db_index=True)
+	#marca de tiempo
 
 	publico = models.BooleanField(default=True, db_index=True)
 	eliminado = models.BooleanField(default=False, db_index=True)
