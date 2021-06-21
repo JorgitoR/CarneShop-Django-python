@@ -19,7 +19,12 @@ class NotificacionQuerySet(models.Queryset):
 	def enviado(self):
 		return self.filter(emailed=True)
 
-	def no_leido(self, )
+	def no_leido(self, include_deleted=False):
+		"""Retornamos solos los item que no han sido leidos en el actual Queryset"""
+
+		return self.filter(no_leido=False)
+
+	
 
 
 class AbstractNotificacion(models.Model):
