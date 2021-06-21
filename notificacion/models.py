@@ -5,7 +5,9 @@ from Dashboard.models import Usuario
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-from django.db.models.utils import timezone
+from django.utils import timezone
+from jsonfield.fields import JSONField
+#pip install jsonfield
 
 class Notificacion(models.Model):
 	class NIVELES(models.TextChoices):
@@ -39,4 +41,23 @@ class Notificacion(models.Model):
 	#emailed = enviado por correo electronico
 
 	data = JSONField(blank=True, null=True)
-	
+
+
+	class Meta:
+		abstract = True
+		ordering = ("-timestamp",)
+		index_together = ('destinario', 'no_leido')
+
+		#abstract = True 
+		#model class that inherits from a django abstract class, 
+		#Django will only generate tables for subclasses of models.Model, so the former
+
+	def __str__(self):
+		diccionario = {
+			'actor':self.actor,
+			'verbo': self.verbo,
+			
+		}
+
+		return u'%(actor)s %(verbo)s' % diccionario
+
