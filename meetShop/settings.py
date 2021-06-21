@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Home',
     'Dashboard',
     'analitycs',
+    'notificacion',
 
     #app third
     'rest_framework',

@@ -198,3 +198,13 @@ class ProductoRelacionado(models.Model):
 	relacionado = models.ForeignKey(producto, on_delete=models.CASCADE, related_name='item_relacionado')
 	order = models.IntegerField(default=1)
 	timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class Pago(models.Model):
+	epayco_charge_id = models.CharField(max_length=50)
+	usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+	cantidad = models.FloatField()
+	date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return self.usuario.username
