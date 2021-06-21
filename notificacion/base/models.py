@@ -22,10 +22,28 @@ class NotificacionQuerySet(models.Queryset):
 	def no_leido(self, include_deleted=False):
 		"""Retornamos solos los item que no han sido leidos en el actual Queryset"""
 
+		#cuando SOFT_DELETE=False, se supone que los desarrolladores No deben tocar el
+		#campo eliminado
+		return self.filter(no_leido=True)
+
+
+	def leido(self, include_deleted=False):
+
 		return self.filter(no_leido=False)
 
-	
 
+	def marcar_todo_as_leido(self, destinario=None):
+		"""
+			Marcar todos los mensages como leidos en el actual Queryset
+	
+		"""
+		#
+		#
+		qs = self.no_leido(True)
+		if destinario:
+			qs = qs.filter(destinario=destinario)
+
+		return qs.update(no_leido=False)
 
 class AbstractNotificacion(models.Model):
 
