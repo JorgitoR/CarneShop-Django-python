@@ -1,5 +1,7 @@
 {% load static %}
 {% load cart_template_tags %}
+{% load notificacion_tags %}
+{% notificacion_sin_leer as noti %}
 <div class="header">
 		<a href="{% url 'home' %}" class="a_home">
 			CarneShop
@@ -17,6 +19,9 @@
 			</a>
 			<a href="">
 				<img src="{% static 'img/noti.png' %}">
+				<button class="count_cart">
+					{{noti}}
+				</button>
 			</a>
 			<a href="{% url 'perfil' request.user.username %}">
 				<img src="{% static 'img/b1.png' %}">

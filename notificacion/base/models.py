@@ -20,7 +20,7 @@ from notificacion import settings as ajustes_notificacion
 DATOS_EXTRAS = ajustes_notificacion.get_config()['USE_JSONFIELD']
 
 def is_soft_delete():
-	return notificacion.settings.get_config()['SOFT_DELETE']
+	return ajustes_notificacion.get_config()['SOFT_DELETE']
 
 
 def assert_soft_delete():
@@ -161,10 +161,10 @@ class AbstractNotificacion(models.Model):
 	nivel = models.CharField(choices=NIVELES.choices, default=NIVELES.info, max_length=20)
 
 	destinario = models.ForeignKey(Usuario, on_delete=models.CASCADE, 
-					related_name='notificar_destino', blank=True, null=True)
+					related_name='notificaciones', blank=True, null=True)
 
 	no_leido = models.BooleanField(default=True, blank=False, db_index=True)
-	
+
 	actor_content_type = models.ForeignKey(ContentType, 
 							related_name='notificar_actor', on_delete=models.CASCADE)
 
