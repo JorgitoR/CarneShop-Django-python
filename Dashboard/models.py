@@ -90,6 +90,15 @@ class OrdenarProducto(models.Model):
 	def get_total(self):
 		return self.cantidad * self.content_object.precio
 
+		
+def notificar_order(sender, instance, created, **kwargs):
+	notificar.send(instance.usuario, 
+					destinario=instance.usuario, 
+					verbo='Direccion', 
+					descripcion='Direccion de residencia creada')
+
+post_save.connect(notificar_order, sender=direccion)
+
 
 class Orden(models.Model):
 	class Estados(models.TextChoices):
