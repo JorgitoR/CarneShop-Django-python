@@ -21,6 +21,23 @@ Notificacion = load_model('notificacion', 'notificacion')
 
 class NotificacionLista(ListView):
 	model = Notificacion
+	template_name = 'notificacion/lista.html'
+	context_object_name = 'notificacion'
+
+	@method_decorator(login_required)
+	def dispatch(self, request, *args, **kwargs):
+		return super(NotificacionLista, self).dispatch(request, *args, **kwargs)
 
 
+class Notificaciones(NotificacionLista):
+	"""
+		Pagina index para usuario autenticado
+	"""
 
+	def get_queryset(self):
+		if settings.get_config()['SOFT_DELETE']:
+			qs = self.request.user.notificaciones.activo()
+		else:
+			qs = self.request.user.notificaciones.all()
+
+		return qs
