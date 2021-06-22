@@ -156,7 +156,8 @@ class AbstractNotificacion(models.Model):
 		exito = 'Exito', 'exito',
 		info = 'Informacion', 'informacion',
 		advertencia = 'Advertencia', 'advertencia',
-		error = 'Error', 'error'
+		error = 'Error', 'error',
+		direccion = 'Direccion', 'direccion'
 
 	nivel = models.CharField(choices=NIVELES.choices, default=NIVELES.info, max_length=20)
 

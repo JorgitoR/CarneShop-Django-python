@@ -20,7 +20,7 @@ class Usuario(AbstractUser):
 	admin = models.BooleanField(default=False)
 	cliente = models.BooleanField(default=False)
 
-	imagen = models.ImageField()
+	imagen = models.ImageField(upload_to='usuario', null=True, blank=True)
 
 	def get_imagen(self):
 		if self.imagen:
@@ -63,7 +63,8 @@ def notificar_order(sender, instance, created, **kwargs):
 	notificar.send(instance.usuario, 
 					destinario=instance.usuario, 
 					verbo='Direccion', 
-					descripcion='Direccion de residencia creada')
+					descripcion='Direccion de residencia creada',
+					nivel='Direccion')
 
 post_save.connect(notificar_order, sender=direccion)
 
