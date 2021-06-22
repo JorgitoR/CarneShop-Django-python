@@ -14,12 +14,18 @@ from django.db.models import Sum
 
 from notificacion.signals import notificar
 
+from meetShop.settings import MEDIA_URL, STATIC_URL
+
 class Usuario(AbstractUser):
 	admin = models.BooleanField(default=False)
 	cliente = models.BooleanField(default=False)
 
 	imagen = models.ImageField()
-	
+
+	def get_imagen(self):
+		if self.imagen:
+			return '{}{}'.format(MEDIA_URL, self.imagen)
+		return '{}{}'.format(STATIC_URL, 'img/empty.png')
 
 class direccion(models.Model):
 	class kind_address(models.TextChoices):
