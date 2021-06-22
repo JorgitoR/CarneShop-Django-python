@@ -1,7 +1,85 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block contenido %}
 
 	{% include 'dashboard/header.html' %}
+
+<div class="Div_main_notifi">
+
+	<div class="header_notify">
+		<a href="{% url 'inicio' %}">
+			<img src="{% static 'img/arrow.png' %}" style="width: 15px;">
+		</a>
+		<h3>
+			Tus notificaciones
+		</h3>
+
+	
+	</div>
+
+	<div class="DivNotificaciones">
+		
+		{% for notificacion in notificacion %}
+			<div>
+				<div class="d-flex align-items-center">
+					<img src="">
+					<div class="ml-2">
+						<h5>{{notificacion.actor}}</h5>
+						<p>{{notificacion.verbo}}</p>
+						<small>{{notificacion.descripcion}}</small>
+					</div>
+				</div>
+				<div>
+					<button>
+						
+					</button>
+				</div>
+			</div>
+		{% endfor %}
+
+	</div>
+
+</div>
+
+
+<style>
+
+	.Div_main_notifi{
+
+		padding-top: 3.5em;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-bottom: 3.5em;
+
+		overflow: auto;
+		height: 100%;
+	}
+	
+	.header_notify{
+		text-align: center;
+		padding: 0.5em 0.5em;
+		position: relative;
+		margin-bottom: 0.5em;
+	}
+
+	.header_notify img{
+		height: 15px;
+		position: absolute;
+		left: 0%;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.header_notify h3{
+		margin-left:7px;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-right: 0;
+		font-size: 1.2em;
+		text-align: left;
+	}
+
+</style>
 
 {% endblock %}

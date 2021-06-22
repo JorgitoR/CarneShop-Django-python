@@ -37,7 +37,9 @@ class Notificaciones(NotificacionLista):
 	def get_queryset(self):
 		if settings.get_config()['SOFT_DELETE']:
 			qs = self.request.user.notificaciones.activo()
+			print('ACTIVO', qs)
 		else:
 			qs = self.request.user.notificaciones.all()
+			print('ALL', qs)
 
 		return qs
