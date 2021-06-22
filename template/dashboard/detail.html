@@ -55,11 +55,8 @@
 	</div>
 
 	<div class="div_relacionados">
-		
-		{% for related in object.get_productos_relacionados %}	
-				{{related.item}}
-		{% endfor %}		
-
+		<h6 class="h6_home">PRODUCTOS RELACIONADOS...</h6>
+		{% include 'dashboard/detail_related.html' %}
 	</div>
 
 	</div>

@@ -20,7 +20,7 @@
 	<div class="DivNotificaciones">
 		
 		{% for notificacion in notificacion %}
-			<div>
+			<div class="div_per_notify">
 				<div class="d-flex align-items-center">
 
 					{% if notificacion.nivel == 'Direccion' %}
@@ -34,6 +34,12 @@
 						<p>{{notificacion.descripcion}}</p>
 
 					</div>
+				</div>
+
+				<div>
+					<p style="text-align: right;">
+						Hace {{notificacion.timesince}}
+					</p>
 				</div>
 		
 			</div>
@@ -117,6 +123,16 @@
 		align-items: center;
 		justify-content: space-between;
 		margin-bottom: 0.5em;
+	}
+
+	.div_per_notify{
+		cursor: pointer;
+		border-bottom: 1px solid #e6e6e6;
+		margin-bottom: 10px;
+	}
+	.div_per_notify:hover{
+		background: #fafafa;
+		transition: all .3;
 	}
 
 </style>

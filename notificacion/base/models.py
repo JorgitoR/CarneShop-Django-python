@@ -208,6 +208,11 @@ class AbstractNotificacion(models.Model):
 		return u'%(actor)s %(verbo)s' % diccionario
 
 
+	def timesince(self, ahora=None):
+
+		from django.utils.timesince import timesince 
+		return timesince(self.timestamp, ahora)
+
 
 def notificar_handler(verbo, **kwargs):
 	"""

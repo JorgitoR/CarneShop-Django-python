@@ -62,7 +62,7 @@ class direccion(models.Model):
 
 
 def notificar_order(sender, instance, created, **kwargs):
-	verbo = "{} Tu direccion se ha creado".format(instance.usuario)
+	verbo = "Tu direccion se ha creado"
 	texto = instance.get_direccion()
 	notificar.send(instance.usuario, 
 					destinario=instance.usuario, 
@@ -76,6 +76,8 @@ class categoria(models.Model):
 	nombre = models.CharField(max_length=100)
 	color = models.CharField(max_length=7, default="#333")
 
+	def __str__(self):
+		return self.nombre
 
 	def get_categoria(self):
 		nombre = escape(self.nombre)
@@ -111,7 +113,7 @@ def notificar_order(sender, instance, created, **kwargs):
 	notificar.send(instance.usuario, 
 					destinario=instance.content_object.usuario, 
 					verbo=verbo, 
-					descripcion='Direccion de residencia creada')
+					descripcion='Proceso por completar, envia un Dm')
 
 post_save.connect(notificar_order, sender=OrdenarProducto)
 
