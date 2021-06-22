@@ -18,6 +18,8 @@ class Usuario(AbstractUser):
 	admin = models.BooleanField(default=False)
 	cliente = models.BooleanField(default=False)
 
+	imagen = models.ImageField()
+	
 
 class direccion(models.Model):
 	class kind_address(models.TextChoices):
@@ -90,14 +92,17 @@ class OrdenarProducto(models.Model):
 	def get_total(self):
 		return self.cantidad * self.content_object.precio
 
-		
+
 def notificar_order(sender, instance, created, **kwargs):
+	
+	verbo = "Ha ordenado el producto: {}".format(instance.content_object.titulo)
+
 	notificar.send(instance.usuario, 
-					destinario=instance.usuario, 
-					verbo='Direccion', 
+					destinario=instance.content_object.usuario, 
+					verbo=verbo, 
 					descripcion='Direccion de residencia creada')
 
-post_save.connect(notificar_order, sender=direccion)
+post_save.connect(notificar_order, sender=OrdenarProducto)
 
 
 class Orden(models.Model):

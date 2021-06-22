@@ -22,11 +22,14 @@
 		{% for notificacion in notificacion %}
 			<div>
 				<div class="d-flex align-items-center">
-					<img src="">
+					{% notificacion.actor.imagen %}
+					<img src="{{notificacion.actor.imagen.url}}">
+					{% endif %}
 					<div class="ml-2" style="display: flex;">
 						<h5>{{notificacion.actor}}</h5>
+
 						<p>{{notificacion.verbo}}</p>
-						<small>{{notificacion.descripcion}}</small>
+
 					</div>
 				</div>
 		
