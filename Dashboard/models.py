@@ -45,6 +45,10 @@ class direccion(models.Model):
 
 
 	def __str__(self):
+		return self.get_direccion()
+
+
+	def get_direccion(self):
 		return "{}-{} Direccion {}-{}-{}-{}{}".format(self.ciudad, 
 										self.barrio, 
 										self.kind_address, 
@@ -53,17 +57,17 @@ class direccion(models.Model):
 										self.numero1,
 										self.numero2)
 
-
-
 	def get_absolute_url(self):
 		return f"editar/direccion/{self.pk}"
 
 
 def notificar_order(sender, instance, created, **kwargs):
+	verbo = "{} Tu direccion se ha creado".format(instance.usuario)
+	texto = instance.get_direccion()
 	notificar.send(instance.usuario, 
 					destinario=instance.usuario, 
-					verbo='Direccion', 
-					descripcion='Direccion de residencia creada',
+					verbo=verbo, 
+					descripcion=texto,
 					nivel='Direccion')
 
 post_save.connect(notificar_order, sender=direccion)
